@@ -7,14 +7,24 @@ export class AuditTrail {
   private readonly updatedAt: DateTime;
   private readonly updatedBy: UserId;
 
-  private constructor(createdAt: DateTime, createdBy: UserId, updatedAt: DateTime, updatedBy: UserId) {
+  private constructor(
+    createdAt: DateTime,
+    createdBy: UserId,
+    updatedAt: DateTime,
+    updatedBy: UserId,
+  ) {
     this.createdAt = createdAt;
     this.createdBy = createdBy;
     this.updatedAt = updatedAt;
     this.updatedBy = updatedBy;
   }
 
-  public static from(createdAt: DateTime, createdBy: UserId, updatedAt: DateTime, updatedBy: UserId) {
+  public static from(
+    createdAt: DateTime,
+    createdBy: UserId,
+    updatedAt: DateTime,
+    updatedBy: UserId,
+  ) {
     return new AuditTrail(createdAt, createdBy, updatedAt, updatedBy);
   }
 
