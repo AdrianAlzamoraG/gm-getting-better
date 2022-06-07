@@ -13,14 +13,24 @@ export class AuditTrailTypeORM {
   @Column('bigint', { name: 'updated_by', nullable: true })
   public updatedBy: number;
 
-  private constructor(createdAt: string, createdBy: number, updatedAt: string, updatedBy: number) {
+  private constructor(
+    createdAt: string,
+    createdBy: number,
+    updatedAt: string,
+    updatedBy: number,
+  ) {
     this.createdAt = createdAt;
     this.createdBy = createdBy;
     this.updatedAt = updatedAt;
     this.updatedBy = updatedBy;
   }
 
-  public static from(createdAt: string, createdBy: number, updatedAt: string, updatedBy: number): AuditTrailTypeORM {
+  public static from(
+    createdAt: string,
+    createdBy: number,
+    updatedAt: string,
+    updatedBy: number,
+  ): AuditTrailTypeORM {
     return new AuditTrailTypeORM(createdAt, createdBy, updatedAt, updatedBy);
   }
 }
