@@ -9,7 +9,6 @@ export class OfferTypeorm {
     unsigned: true,
   })
   public id: number;
-
   @Column((type) => AuditTrailTypeORM, { prefix: false })
   public auditTrail: AuditTrailTypeORM;
 
