@@ -5,19 +5,13 @@ export class Money {
   private readonly amount: number;
   private readonly currency: string;
 
-  private constructor(
-    amount: number,
-    currency: string
-  ) {
+  private constructor(amount: number, currency: string) {
     this.amount = Number(amount);
     this.currency = currency;
   }
 
   public static create(amount: number, currency: string): Money {
-    return new Money(
-      amount,
-      currency,
-    );
+    return new Money(amount, currency);
   }
 
   public add(other: Money): Money {
