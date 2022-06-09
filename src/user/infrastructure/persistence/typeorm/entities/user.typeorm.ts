@@ -8,7 +8,7 @@ import { PasswordTypeORM } from '../value-objects/password.typeorm';
 
 @Entity('user')
 @Unique('UQ_customers_dni', ['dni.value'])
-export class PsychologistTypeORM {
+export class UserTypeORM {
   @PrimaryGeneratedColumn('increment', {type: 'bigint', name: 'id', unsigned: true})
   public id: number;
 
