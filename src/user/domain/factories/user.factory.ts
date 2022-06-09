@@ -25,7 +25,7 @@ export class UserFactory {
   }
 
   public static withId(
-    psychologistId: UserId,
+    userId: UserId,
     name: Name,
     dni: Dni,
     email: Email,
@@ -33,7 +33,7 @@ export class UserFactory {
     
   ): User {
     return new User(
-      psychologistId,
+      userId,
       name,
       dni,
       email,
