@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { Column } from 'typeorm'  ;
+=======
 import { Column } from 'typeorm';
+>>>>>>> parent of 4e1db19 (Update password.typeorm.ts)
 
 export class PasswordTypeORM {
   @Column('varchar', { name: 'password', length: 12, nullable: false })
