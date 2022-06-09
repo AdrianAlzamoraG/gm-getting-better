@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { AuditTrailTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
 
 @Entity('offer')
@@ -17,5 +17,7 @@ export class OfferTypeorm {
   @Column('varchar', { name: 'description', length: 700, nullable: false })
   public description: string;
   @Column('bool', { name: 'statusPublication', nullable: false })
-  public visible: boolean;
+  public statusPublication: boolean;
+  @Column('int', { name: 'coachId', nullable: false })
+  public coachId: number;
 }
