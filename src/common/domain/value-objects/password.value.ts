@@ -1,28 +1,44 @@
-import { AppNotification } from 'src/common/application/app.notification';
 import { Result } from 'typescript-result';
+import { AppNotification } from '../../application/app.notification';
 
 export class Password {
-  private value: string;
-  private static MAX_LENGTH = 32;
+  private readonly value: string;
+  private static MIN_LENGTH: 8;
+  private static MAX_LENGTH: 12;
 
   private constructor(value: string) {
     this.value = value;
   }
 
+  public getValue(): string {
+    return this.value;
+  }
+
   public static create(value: string): Result<AppNotification, Password> {
-    const notification: AppNotification = new AppNotification();
+    let notification: AppNotification = new AppNotification();
     value = (value ?? '').trim();
     if (value === '') {
       notification.addError('password is required', null);
     }
+
     if (value.length > this.MAX_LENGTH) {
       notification.addError(
-        'The maximum length of a password is ' +
-          this.MAX_LENGTH +
-          ' characters including spaces',
+        'password field must have ' +
+          Password.MAX_LENGTH +
+          ' characters maximum',
         null,
       );
     }
+
+    if (value.length < this.MIN_LENGTH) {
+      notification.addError(
+        'password field must have at least' +
+          Password.MIN_LENGTH +
+          'characters',
+        null,
+      );
+    }
+
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
