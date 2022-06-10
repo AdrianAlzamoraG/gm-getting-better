@@ -5,9 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteOfferCommand } from '../../commands/delete-offer.command';
 
 @CommandHandler(DeleteOfferCommand)
-export class DeleteOfferHandler
-  implements ICommandHandler<DeleteOfferCommand>
-{
+export class DeleteOfferHandler implements ICommandHandler<DeleteOfferCommand> {
   constructor(
     @InjectRepository(OfferTypeORM)
     private offerRepository: Repository<OfferTypeORM>,

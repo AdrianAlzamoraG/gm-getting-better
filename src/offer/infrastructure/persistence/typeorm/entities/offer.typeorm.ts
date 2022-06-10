@@ -32,5 +32,4 @@ export class OfferTypeORM {
 
   @Column('varchar', { name: 'createdAt', length: 100, nullable: false })
   public createdAt: string;
-
 }
