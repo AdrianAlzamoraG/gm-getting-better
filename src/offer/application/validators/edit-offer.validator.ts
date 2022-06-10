@@ -1,37 +1,41 @@
 import { InjectRepository } from '@nestjs/typeorm';
+import { OfferTypeORM } from '../../infrastructure/persistence/typeorm/entities/offer.typeorm';
 import { Repository } from 'typeorm';
 import { AppNotification } from '../../../common/application/app.notification';
-import { OfferTypeORM } from '../../infrastructure/persistence/typeorm/entities/offer.typeorm';
-import { CreateOfferDto } from '../dtos/request/create-offer-request.dto';
+import { EditOfferDto } from '../dtos/request/edit-offer-request.dto';
 
-export class CreateOfferValidator {
+export class EditOfferValidator {
   constructor(
     @InjectRepository(OfferTypeORM)
-    private offerRepository: Repository<OfferTypeORM>,
-    @InjectRepository(CoachTypeORM)
-    private coachRepository: Repository<CoachTypeORM>,
+    private announcementRepository: Repository<OfferTypeORM>,
   ) {}
 
   public async validate(
-    createOfferRequestDto: CreateOfferDto,
-    idCoach: number,
+    targetId: number,
+    editOfferRequestDto: EditOfferDto,
   ): Promise<AppNotification> {
     const notification: AppNotification = new AppNotification();
 
-    const title: string = createOfferRequestDto.title.trim();
+    const id: number = editOfferRequestDto.id;
+
+    if (id == null) {
+      notification.addError('Offer id is required', null);
+    }
+
+    const title: string = editOfferRequestDto.title.trim();
 
     if (title.length <= 0) {
       notification.addError('Offer title is required', null);
     }
 
-    const description: string = createOfferRequestDto.description.trim();
+    const description: string = editOfferRequestDto.description.trim();
 
     if (description.length <= 0) {
       notification.addError('Offer description is required', null);
     }
 
     const pricePerIndividualSession: number =
-      createOfferRequestDto.pricePerIndividualSession;
+      editOfferRequestDto.pricePerIndividualSession;
 
     if (pricePerIndividualSession == 0) {
       notification.addError(
@@ -41,13 +45,13 @@ export class CreateOfferValidator {
     }
 
     const pricePerGroupSession: number =
-      createOfferRequestDto.pricePerGroupSession;
+      editOfferRequestDto.pricePerGroupSession;
 
     if (pricePerGroupSession == 0) {
       notification.addError('Offer pricePerGroupSession is required', null);
     }
 
-    const typeMoney: string = createOfferRequestDto.typeMoney.toString();
+    const typeMoney: string = editOfferRequestDto.typeMoney.toString();
 
     if (typeMoney.length <= 0) {
       notification.addError('Offer typeMoney is required', null);
@@ -55,16 +59,6 @@ export class CreateOfferValidator {
 
     if (notification.hasErrors()) {
       return notification;
-    }
-
-    const coachId: number = idCoach;
-    const coach: CoachTypeORM = await this.coachRepository
-      .createQueryBuilder()
-      .where('id = :coachId', { coachId })
-      .getOne();
-
-    if (coach == null) {
-      notification.addError('Offer coachId is wrong', null);
     }
 
     return notification;
