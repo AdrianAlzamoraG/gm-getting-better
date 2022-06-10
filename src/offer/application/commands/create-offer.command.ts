@@ -2,7 +2,6 @@ export class CreateOfferCommand {
   constructor(
     public readonly title: string,
     public readonly description: string,
-    public readonly summaryExperience: string,
     public readonly pricePerIndividualSession: number,
     public readonly pricePerGroupSession: number,
     public readonly typeMoney: string,
