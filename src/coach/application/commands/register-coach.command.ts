@@ -1,9 +1,9 @@
 export class RegisterCoachCommand {
     constructor(
-      public readonly nameCompany: string,
+      public readonly nameCoach: string,
       public readonly email: string,
       public readonly password: string,
-      public readonly descriptionCompany: string,
-      public readonly imgCompany: string,
+      public readonly descriptionCoach: string,
+      public readonly imgCoach: string,
     ) {}
   }
