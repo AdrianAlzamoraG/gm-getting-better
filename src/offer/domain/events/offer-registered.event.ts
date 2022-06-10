@@ -1,5 +1,5 @@
-export class OfferRegisteredEvent{
-    constructor(
+export class OfferRegisteredEvent {
+  constructor(
     public id: number,
     public title: string,
     public description: string,
@@ -9,5 +9,5 @@ export class OfferRegisteredEvent{
     public coachId: number,
     public statusPublication: boolean,
     public createdAt: string,
-    ){}
+  ) {}
 }
