@@ -11,7 +11,7 @@ export class CoachTypeORM {
   public id: CoachIdTypeORM;
 
   @Column((type) => NameCoachTypeORM, { prefix: false })
-  public nameCompany: NameCoachTypeORM;
+  public nameCoach: NameCoachTypeORM;
 
   @Column((type) => EmailTypeORM, { prefix: false })
   public email: EmailTypeORM;
@@ -20,8 +20,8 @@ export class CoachTypeORM {
   public password: PasswordTypeORM;
 
   @Column('varchar', { name: 'description_coach', length: 500, nullable: false })
-  public descriptionCompany: string;
+  public descriptionCoach: string;
 
   @Column('varchar', { name: 'img_coach', length: 500, nullable: false })
-  public imgCompany: string;
+  public imgCoach: string;
 }
