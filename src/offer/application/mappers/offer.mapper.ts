@@ -4,23 +4,24 @@ import { OfferIdTypeORM } from "src/offer/infrastructure/persistence/typeorm/val
 
 
 
+
 export class OfferMapper {
     public static toTypeORM(offer: Offer): OfferTypeORM {
-      const offerIdTypeORM: OfferTypeORM = new OfferTypeORM();
+      const offerTypeORM: OfferTypeORM = new OfferTypeORM();
   
-      offerIdTypeORM.id = OfferIdTypeORM.from(
+      offerTypeORM.id = OfferIdTypeORM.from(
         offer.getId().getValue(),
       );
   
-      offerIdTypeORM.title = offer.getTitle();
-      offerIdTypeORM.description=offer.getDescription();
-      offerIdTypeORM.pricePerIndividualSession=offer.getPricePerIndividualSession();
-      offerIdTypeORM.pricePerGroupSession=offer.getPricePerGroupSession();
-      offerIdTypeORM.typeMoney=offer.getTypeMoney();
-      offerIdTypeORM.coachId=offer.getCoachId();
-      offerIdTypeORM.statusPublication=offer.getStatusPublication();
-      offerIdTypeORM.createdAt = offer.getCreatedAt();
+      offerTypeORM.title = offer.getTitle();
+      offerTypeORM.description=offer.getDescription();
+      offerTypeORM.pricePerIndividualSession=offer.getPricePerIndividualSession();
+      offerTypeORM.pricePerGroupSession=offer.getPricePerGroupSession();
+      offerTypeORM.typeMoney=offer.getTypeMoney();
+      offerTypeORM.coachId=offer.getCoachId();
+      offerTypeORM.statusPublication=offer.getStatusPublication();
+      offerTypeORM.createdAt = offer.getCreatedAt();
   
-      return offerIdTypeORM;
+      return offerTypeORM;
     }
   }
