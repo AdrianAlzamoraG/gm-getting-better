@@ -1,10 +1,9 @@
 export class EditOfferCommand {
   constructor(
-    public readonly offerId: number,
+    public readonly targetId: number,
     public readonly id: number,
     public readonly title: string,
     public readonly description: string,
-    public readonly summaryExperience: string,
     public readonly pricePerIndividualSession: number,
     public readonly pricePerGroupSession: number,
     public readonly typeMoney: string,

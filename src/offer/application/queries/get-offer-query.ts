@@ -1,1 +1,1 @@
-export class GetOfferQuery {}
+export class GetOffersQuery {}
