@@ -18,10 +18,9 @@ export class EditOfferHandler implements ICommandHandler<EditOfferCommand> {
   async execute(command: EditOfferCommand) {
     const idResult: OfferId = OfferId.create(command.id);
 
-    const companyResult = CoachIdTypeORM.constructor(
-      // FALTA IMPLEMENTAR COACHIDTYPEORM
+    /*const companyResult = CoachIdTypeORM.constructor(
       command.coachId,
-    );
+    );*/
 
     const offer: Offer = OfferFactory.withId(
       idResult,
@@ -30,10 +29,10 @@ export class EditOfferHandler implements ICommandHandler<EditOfferCommand> {
       command.pricePerIndividualSession,
       command.pricePerGroupSession,
       command.typeMoney,
-      command.coachId,
+      //  command.coachId,
       command.statusPublication,
       command.createdAt,
-      coachResult.value, // FALTA IMPLEMENTAR
+      // coachResult.value,
     );
 
     const offerTypeORM = OfferMapper.toTypeORM(offer);

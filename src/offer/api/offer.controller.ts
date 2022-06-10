@@ -105,11 +105,11 @@ export class OfferController {
   @ApiResponse({
     status: 202,
     description: 'Offer deleted',
-    type: GetCoachDto,
   })
   async delete(
     @Param('id') id: number,
     @Res({ passthrough: true }) response,
+    type: GetOffersDto,
   ): Promise<object> {
     try {
       const result: Result<AppNotification, DeleteOfferResponseDto> =

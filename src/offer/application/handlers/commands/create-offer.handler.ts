@@ -18,25 +18,24 @@ export class CreateOfferHandler implements ICommandHandler<CreateOfferCommand> {
 
   async execute(command: CreateOfferCommand) {
     let offer: Offer = OfferFactory.createFrom(
-      // PENDIE NTE  DE IMPLEMENTAR FACTORY EN DOMAIN
       command.title,
       command.description,
       command.pricePerIndividualSession,
       command.pricePerGroupSession,
       command.typeMoney,
-      command.coachId,
+      // command.coachId,
       command.statusPublication,
       command.createdAt,
     );
 
-    let OfferTypeORM = OfferMapper.toTypeORM(offer);
-    OfferTypeORM = await this.offerRepository.save(OfferTypeORM);
+    let offerTypeORM = OfferMapper.toTypeORM(offer);
+    offerTypeORM = await this.offerRepository.save(offerTypeORM);
 
-    if (OfferTypeORM == null) {
+    if (offerTypeORM == null) {
       return 0;
     }
 
-    const offerId = Number(OfferTypeORM.id.value);
+    const offerId = Number(offerTypeORM.id.value);
     offer.changeId(OfferId.create(offerId));
 
     offer = this.publisher.mergeObjectContext(offer);

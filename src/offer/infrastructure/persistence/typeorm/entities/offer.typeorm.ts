@@ -1,14 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 import { AuditTrailTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
 import { OfferIdTypeORM } from '../value-objects/offer-id.typeorm';
 
 @Entity('offers')
 export class OfferTypeORM {
-  @PrimaryGeneratedColumn('increment', {
-    type: 'bigint',
-    name: 'id',
-    unsigned: true,
-  })
+  @Column((type) => OfferIdTypeORM, { prefix: false })
   public id: OfferIdTypeORM;
 
   @Column((type) => AuditTrailTypeORM, { prefix: false })
@@ -27,9 +23,8 @@ export class OfferTypeORM {
   public typeMoney: string;
   @Column('bool', { name: 'statusPublication', nullable: false })
   public statusPublication: boolean;
-  @Column('int', { name: 'coachId', nullable: false })
-  public coachId: number;
-
+  /*@Column('int', { name: 'coachId', nullable: false })
+  public coachId: number;*/
   @Column('varchar', { name: 'createdAt', length: 100, nullable: false })
   public createdAt: string;
 }
