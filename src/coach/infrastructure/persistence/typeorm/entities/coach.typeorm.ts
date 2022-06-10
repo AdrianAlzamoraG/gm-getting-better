@@ -19,7 +19,11 @@ export class CoachTypeORM {
   @Column((type) => PasswordTypeORM, { prefix: false })
   public password: PasswordTypeORM;
 
-  @Column('varchar', { name: 'description_coach', length: 500, nullable: false })
+  @Column('varchar', {
+    name: 'description_coach',
+    length: 500,
+    nullable: false,
+  })
   public descriptionCoach: string;
 
   @Column('varchar', { name: 'img_coach', length: 500, nullable: false })

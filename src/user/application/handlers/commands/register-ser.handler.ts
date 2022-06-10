@@ -52,17 +52,14 @@ export class RegisterUserHandler
       return 0;
     }
 
-     let user: User = UserFactory.createFrom(
+    let user: User = UserFactory.createFrom(
       nameResult.value,
       dniResult.value,
       emailResult.value,
       passwordResult.value,
-
     );
     let userTypeORM = UserMapper.toTypeORM(user);
-    userTypeORM = await this.userRepository.save(
-      userTypeORM,
-    );
+    userTypeORM = await this.userRepository.save(userTypeORM);
     if (userTypeORM == null) {
       return 0;
     }

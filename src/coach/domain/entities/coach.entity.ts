@@ -12,39 +12,30 @@ export class User extends AggregateRoot {
   private dni: Dni;
   private email: Email;
   private password: Password;
-    apply: any;
- 
+  apply: any;
 
-  constructor(
-    id: CoachId,
-    email: Email,
-    password: Password,
-    name: Name,  
-  ) {
+  constructor(id: CoachId, email: Email, password: Password, name: Name) {
     super();
-    this.id = id;   
+    this.id = id;
     this.email = email;
     this.password = password;
-    this.name = name;  
+    this.name = name;
   }
   public register() {
     const event = new CoachRegisteredEvent(
       this.id.getValue(),
       this.email.getValue(),
       this.password.getValue(),
-      this.name.getFirstName(),  
-         
-      
+      this.name.getFirstName(),
     );
     this.apply(event);
-
   }
-   
+
   public getId(): CoachId {
     return this.id;
   }
 
-    public getEmail(): Email {
+  public getEmail(): Email {
     return this.email;
   }
 
@@ -59,7 +50,6 @@ export class User extends AggregateRoot {
   public changeId(id: CoachId) {
     this.id = id;
   }
- 
 
   public changeEmail(email: Email): void {
     this.email = email;
@@ -70,4 +60,5 @@ export class User extends AggregateRoot {
   }
   public changeName(name: Name): void {
     this.name = name;
-  }}
+  }
+}

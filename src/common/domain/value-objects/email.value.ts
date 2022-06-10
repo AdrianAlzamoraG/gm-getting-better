@@ -1,5 +1,5 @@
-import { AppNotification } from "src/common/application/app.notification";
-import { Result } from "typescript-result";
+import { AppNotification } from 'src/common/application/app.notification';
+import { Result } from 'typescript-result';
 
 export class Email {
   private value: string;
@@ -12,16 +12,20 @@ export class Email {
     return this.value;
   }
 
-  public static create(email: string): Result<AppNotification, Email>
-  {
-    let notification: AppNotification = new AppNotification();
-    email = (email ?? "").trim();
+  public static create(email: string): Result<AppNotification, Email> {
+    const notification: AppNotification = new AppNotification();
+    email = (email ?? '').trim();
     const emailMaxLength = 150;
-    if (email === "") {
+    if (email === '') {
       notification.addError('address is required', null);
     }
     if (email.length > emailMaxLength) {
-      notification.addError('The maximum length of an email is ' + emailMaxLength + ' characters including spaces', null);
+      notification.addError(
+        'The maximum length of an email is ' +
+          emailMaxLength +
+          ' characters including spaces',
+        null,
+      );
     }
     const regExp = new RegExp('^(.+)@(.+)$');
     if (regExp.test(email) === false) {
