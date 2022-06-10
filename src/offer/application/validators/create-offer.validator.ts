@@ -1,16 +1,19 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { OfferTypeORM } from '../../infrastructure/persistence/typeorm/entities/announcement.typeorm';
 import { Repository } from 'typeorm';
 import { AppNotification } from '../../../common/application/app.notification';
+import { OfferTypeORM } from '../../infrastructure/persistence/typeorm/entities/offer.typeorm';
 
 export class CreateOfferValidator {
   constructor(
     @InjectRepository(OfferTypeORM)
     private offerRepository: Repository<OfferTypeORM>,
+    @InjectRepository(CoachTypeORM)
+    private coachRepository: Repository<CoachTypeORM>,
   ) {}
 
   public async validate(
     createOfferRequestDto: CreateOfferDto,
+    idCoach: number,
   ): Promise<AppNotification> {
     const notification: AppNotification = new AppNotification();
 
@@ -51,6 +54,16 @@ export class CreateOfferValidator {
 
     if (notification.hasErrors()) {
       return notification;
+    }
+
+    const coachId: number = idCoach;
+    const coach: CoachTypeORM = await this.coachRepository
+      .createQueryBuilder()
+      .where('id = :coachId', { coachId })
+      .getOne();
+
+    if (coach == null) {
+      notification.addError('Offer coachId is wrong', null);
     }
 
     return notification;
