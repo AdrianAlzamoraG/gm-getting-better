@@ -6,6 +6,7 @@ import { IEventHandler } from '@nestjs/cqrs';
 export class OfferRegisteredHandler
   implements IEventHandler<OfferRegisteredEvent>
 {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
   async handle(event: OfferRegisteredEvent) {

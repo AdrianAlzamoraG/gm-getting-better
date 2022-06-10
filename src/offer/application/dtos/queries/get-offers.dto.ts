@@ -1,6 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 export class GetOffersDto {
   @ApiProperty()
+  public id: number;
+  @ApiProperty()
   public title: string;
   @ApiProperty()
   public description: string;
@@ -10,8 +12,8 @@ export class GetOffersDto {
   public pricePerGroupSession: number;
   @ApiProperty()
   public typeMoney: string;
-  @ApiProperty()
-  public coachId: number;
+  // @ApiProperty()
+  // public coachId: number;
   @ApiProperty()
   public statusPublication: boolean;
   @ApiProperty()

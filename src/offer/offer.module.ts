@@ -10,13 +10,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CqrsModule } from '@nestjs/cqrs';
 import { OfferTypeORM } from './infrastructure/persistence/typeorm/entities/offer.typeorm';
 import { Module } from '@nestjs/common';
+import { OfferRegisteredHandler } from './application/handlers/events/offer-registered.handler';
+import { GetOffersHandler } from './application/handlers/queries/get-offer.handler';
+import { GetOfferByIdHandler } from './application/handlers/queries/get-offer-by-id.handler';
 
 export const CommandHandlers = [
   CreateOfferHandler,
   DeleteOfferHandler,
   EditOfferHandler,
 ];
-export const EventHandlers = [OfferCreatedHandler];
+export const EventHandlers = [OfferRegisteredHandler];
 export const QueryHandlers = [GetOffersHandler, GetOfferByIdHandler];
 export const Validators = [
   CreateOfferValidator,
@@ -25,7 +28,7 @@ export const Validators = [
 ];
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([OfferTypeORM, CoachTypeORM])],
+  imports: [CqrsModule, TypeOrmModule.forFeature([OfferTypeORM])],
   controllers: [OfferController],
   providers: [
     OffersApplicationService,

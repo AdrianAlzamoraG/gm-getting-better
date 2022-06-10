@@ -14,7 +14,6 @@ export class OfferMapper {
       offer.getPricePerIndividualSession();
     offerTypeORM.pricePerGroupSession = offer.getPricePerGroupSession();
     offerTypeORM.typeMoney = offer.getTypeMoney();
-    offerTypeORM.coachId = offer.getCoachId();
     offerTypeORM.statusPublication = offer.getStatusPublication();
     offerTypeORM.createdAt = offer.getCreatedAt();
 

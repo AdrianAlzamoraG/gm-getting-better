@@ -8,7 +8,7 @@ export class OfferFactory {
     pricePerIndividualSession: number,
     pricePerGroupSession: number,
     typeMoney: string,
-    coachId: number,
+    // coachId: number,
     statusPublication: boolean,
     createdAt: string,
   ): Offer {
@@ -19,7 +19,7 @@ export class OfferFactory {
       pricePerIndividualSession,
       pricePerGroupSession,
       typeMoney,
-      coachId,
+      // coachId,
       statusPublication,
       createdAt,
     );
@@ -31,7 +31,7 @@ export class OfferFactory {
     pricePerIndividualSession: number,
     pricePerGroupSession: number,
     typeMoney: string,
-    coachId: number,
+    // coachId: number,
     statusPublication: boolean,
     createdAt: string,
   ): Offer {
@@ -42,7 +42,7 @@ export class OfferFactory {
       pricePerIndividualSession,
       pricePerGroupSession,
       typeMoney,
-      coachId,
+      // coachId,
       statusPublication,
       createdAt,
     );

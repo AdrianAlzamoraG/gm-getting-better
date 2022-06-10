@@ -67,7 +67,7 @@ export class OffersApplicationService {
       createOfferRequestDto.pricePerGroupSession,
       createOfferRequestDto.typeMoney,
       createOfferRequestDto.statusPublication,
-      createOfferRequestDto.coachId,
+      // createOfferRequestDto.coachId,
     );
     const offerId = await this.commandBus.execute(createOfferCommand);
 
@@ -80,7 +80,7 @@ export class OffersApplicationService {
         createOfferRequestDto.pricePerGroupSession,
         createOfferRequestDto.typeMoney,
         createOfferRequestDto.statusPublication,
-        createOfferRequestDto.coachId,
+        //createOfferRequestDto.coachId,
       );
 
     return Result.ok(createOfferResponseDto);
@@ -108,7 +108,7 @@ export class OffersApplicationService {
         offerTypeORM.pricePerGroupSession,
         offerTypeORM.typeMoney,
         offerTypeORM.statusPublication,
-        offerTypeORM.coachId,
+        //offerTypeORM.coachId,
       );
 
     return Result.ok(deleteOfferResponseDto);

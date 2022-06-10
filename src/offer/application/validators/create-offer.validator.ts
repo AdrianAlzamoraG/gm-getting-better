@@ -7,14 +7,13 @@ import { CreateOfferDto } from '../dtos/request/create-offer-request.dto';
 export class CreateOfferValidator {
   constructor(
     @InjectRepository(OfferTypeORM)
-    private offerRepository: Repository<OfferTypeORM>,
-    @InjectRepository(CoachTypeORM)
-    private coachRepository: Repository<CoachTypeORM>,
+    private offerRepository: Repository<OfferTypeORM> /*@InjectRepository(CoachTypeORM)
+    private coachRepository: Repository<CoachTypeORM>,*/,
   ) {}
 
   public async validate(
     createOfferRequestDto: CreateOfferDto,
-    idCoach: number,
+    // idCoach: number,
   ): Promise<AppNotification> {
     const notification: AppNotification = new AppNotification();
 
@@ -57,7 +56,7 @@ export class CreateOfferValidator {
       return notification;
     }
 
-    const coachId: number = idCoach;
+    /* const coachId: number = idCoach;
     const coach: CoachTypeORM = await this.coachRepository
       .createQueryBuilder()
       .where('id = :coachId', { coachId })
@@ -65,7 +64,7 @@ export class CreateOfferValidator {
 
     if (coach == null) {
       notification.addError('Offer coachId is wrong', null);
-    }
+    }*/
 
     return notification;
   }
