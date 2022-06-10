@@ -17,12 +17,8 @@ export class CreateOfferHandler implements ICommandHandler<CreateOfferCommand> {
   ) {}
 
   async execute(command: CreateOfferCommand) {
-    /*const companyResult= CompanyIdTypeORM.constructor(
-      command.companyId,
-    );*/
-
     let offer: Offer = OfferFactory.createFrom(
-      //PENDIENTE DE IMPLEMENTAR FACTORY EN DOMAIN
+      // PENDIE NTE  DE IMPLEMENTAR FACTORY EN DOMAIN
       command.title,
       command.description,
       command.pricePerIndividualSession,

@@ -9,9 +9,7 @@ import { Offer } from 'src/offer/domain/entities/offer.entity';
 import { OfferMapper } from '../../mappers/offer.mapper';
 
 @CommandHandler(EditOfferCommand)
-export class EditOfferHandler
-  implements ICommandHandler<EditOfferCommand>
-{
+export class EditOfferHandler implements ICommandHandler<EditOfferCommand> {
   constructor(
     @InjectRepository(OfferTypeORM)
     private offerRepository: Repository<OfferTypeORM>,
@@ -20,11 +18,12 @@ export class EditOfferHandler
   async execute(command: EditOfferCommand) {
     const idResult: OfferId = OfferId.create(command.id);
 
-    const companyResult= CoachIdTypeORM.constructor( // FALTA IMPLEMENTAR COACHIDTYPEORM
+    const companyResult = CoachIdTypeORM.constructor(
+      // FALTA IMPLEMENTAR COACHIDTYPEORM
       command.coachId,
     );
 
-    const announcement: Offer = OfferFactory.withId(
+    const offer: Offer = OfferFactory.withId(
       idResult,
       command.title,
       command.description,
@@ -34,15 +33,12 @@ export class EditOfferHandler
       command.coachId,
       command.statusPublication,
       command.createdAt,
-      coachResult.value, // FALTA IMPLEMENTAR 
+      coachResult.value, // FALTA IMPLEMENTAR
     );
 
-    const announcementTypeORM = OfferMapper.toTypeORM(announcement);
-    await this.offerRepository.update(
-      command.offerId,
-      OfferTypeORM,
-    );
+    const offerTypeORM = OfferMapper.toTypeORM(offer);
+    await this.offerRepository.update(command.targetId, offerTypeORM);
 
-    return OfferTypeORM;
+    return offerTypeORM;
   }
 }
