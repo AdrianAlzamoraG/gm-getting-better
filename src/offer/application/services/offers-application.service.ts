@@ -15,7 +15,7 @@ import { DeleteOfferCommand } from '../commands/delete-offer.command';
 import { GetOfferByIdQuery } from '../queries/get-offer-by-id.query';
 
 @Injectable()
-export class OfferApplicationService {
+export class OffersApplicationService {
   constructor(
     private commandBus: CommandBus,
     private queryBus: QueryBus,
