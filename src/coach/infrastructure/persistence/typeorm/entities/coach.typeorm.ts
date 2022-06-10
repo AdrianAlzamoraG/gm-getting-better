@@ -5,8 +5,8 @@ import { EmailTypeORM } from 'src/common/infrastructure/persistence/typeorm/enti
 import { PasswordTypeORM } from 'src/common/infrastructure/persistence/typeorm/entities/password.typeorm';
 
 @Entity('coach')
-@Unique('UQ_company', ['email.value'])
-export class CompanyTypeORM {
+@Unique('UQ_coach', ['email.value'])
+export class CoachTypeORM {
   @Column((type) => CoachIdTypeORM, { prefix: false })
   public id: CoachIdTypeORM;
 
