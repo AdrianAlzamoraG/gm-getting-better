@@ -6,7 +6,7 @@ import { Dni } from '../../../common/domain/value-objects/dni.value';
 import { Password } from '../../../common/domain/value-objects/password.value';
 import { CoachRegisteredEvent } from '../events/coach-registered.event';
 
-export class User extends AggregateRoot {
+export class Coach extends AggregateRoot {
   private id: CoachId;
   private name: Name;
   private dni: Dni;
