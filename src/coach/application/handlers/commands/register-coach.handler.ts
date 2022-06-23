@@ -18,12 +18,12 @@ import { UserType } from '../../../../common/domain/factories/user/enum/user-typ
 import { User } from "../../../../common/domain/factories/user/entities/abstract/user";
 
 @CommandHandler(RegisterCoachCommand)
-export class RegisterCompanyHandler
+export class RegisterOrganizationHandler
   implements ICommandHandler<RegisterCoachCommand>
 {
   constructor(
     @InjectRepository(CoachTypeORM)
-    private companyRepository: Repository<CoachTypeORM>,
+    private organizationRepository: Repository<CoachTypeORM>,
     private publisher: EventPublisher,
   ) {}
 

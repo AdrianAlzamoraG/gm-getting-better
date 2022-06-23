@@ -16,7 +16,7 @@ export interface CreateFromParams {
   nameGithub?: string;
   imgApplicant?: string;
 
-  //Company
+  //Organization
   nameCoach?: NameCoach;
   descriptionCoach?: string;
   imgCoach?: string;

@@ -57,7 +57,7 @@ export class OfferController {
     description: 'Offer returned',
     type: GetOffersDto,
   })
-  async getCompanyById(
+  async getOrganizationById(
     @Param('id') id: number,
     @Res({ passthrough: true }) response,
   ): Promise<object> {

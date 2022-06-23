@@ -43,7 +43,7 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
       offerDto.pricePerGroupSession = ormOffer.pricePerGroupSession;
       offerDto.typeMoney = ormOffer.typeMoney;
       offerDto.statusPublication = ormOffer.statusPublication;
-      // announcementDto.companyId = ormAnnouncement.companyId;
+      // announcementDto.organizationId = ormAnnouncement.organizationId;
       return offerDto;
     });
 

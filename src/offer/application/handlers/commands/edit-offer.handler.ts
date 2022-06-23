@@ -18,7 +18,7 @@ export class EditOfferHandler implements ICommandHandler<EditOfferCommand> {
   async execute(command: EditOfferCommand) {
     const idResult: OfferId = OfferId.create(command.id);
 
-    /*const companyResult = CoachIdTypeORM.constructor(
+    /*const organizationResult = CoachIdTypeORM.constructor(
       command.coachId,
     );*/
 
