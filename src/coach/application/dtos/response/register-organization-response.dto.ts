@@ -1,4 +1,4 @@
-export class RegisterCoachResponse {
+export class RegisterOrganizationResponse {
   constructor(
     public id: number,
     public readonly name: string,
