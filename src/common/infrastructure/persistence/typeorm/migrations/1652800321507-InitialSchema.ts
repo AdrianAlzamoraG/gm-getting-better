@@ -1,15 +1,15 @@
+import { SqlReader } from 'node-sql-reader';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InitialSchema1652800321507 implements MigrationInterface {
-  name = 'InitialSchema1652800321507';
-
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(
-      `CREATE TABLE \`offers\` (\`title\` varchar(600) NOT NULL, \`description\` varchar(700) NOT NULL, \`pricePerIndividualSession\` NOT NULL, \`pricePerGroupSession\`  NOT NULL, \`typeMoney\` varchar(100) NOT NULL, \`statusPublication\` tinyint NOT NULL, \`id\` bigint UNSIGNED NOT NULL AUTO_INCREMENT, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`,
-    );
+    const folder = __dirname;
+    const path = folder + '/initial-schema.sql';
+    const queries = SqlReader.readSqlFile(path);
+    for (const query of queries) {
+      await queryRunner.query(query);
+    }
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP TABLE \`announcements\``);
-  }
+  public async down(queryRunner: QueryRunner): Promise<void> {}
 }
