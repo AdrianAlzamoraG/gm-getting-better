@@ -1,7 +1,8 @@
-export class RegisterCoach {
+export class RegisterPerson {
   constructor(
-    public readonly name: string,
-    public readonly ruc: string,
+    public readonly firstName: string,
+    public readonly lastName: string,
+    public readonly dni: string,
     public readonly createdAt: string,
     public readonly createdBy: number,
     public readonly updatedAt: string,
