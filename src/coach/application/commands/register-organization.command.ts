@@ -1,4 +1,4 @@
-export class RegisterCoach {
+export class RegisterOrganization {
   constructor(
     public readonly name: string,
     public readonly ruc: string,
