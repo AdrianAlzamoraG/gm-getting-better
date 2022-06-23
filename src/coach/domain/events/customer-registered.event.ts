@@ -1,3 +1,3 @@
 export class CustomerRegistered {
-    constructor(public readonly id: number) {}
-  }
+  constructor(public readonly id: number) {}
+}

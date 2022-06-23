@@ -1,6 +1,6 @@
 import { CustomerRegistered } from './customer-registered.event';
 
-export class CoachRegistered extends CustomerRegistered {
+export class OrganizationRegistered extends CustomerRegistered {
   constructor(
     public readonly id: number,
     public readonly name: string,
