@@ -1,73 +1,32 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 import { CoachId } from '../value-objects/coach-id.value';
-import { Name } from '../../../common/domain/value-objects/name.value';
-import { Email } from '../../../common/domain/value-objects/email.value';
-import { Dni } from '../../../common/domain/value-objects/dni.value';
-import { Password } from '../../../common/domain/value-objects/password.value';
-import { CoachRegisteredEvent } from '../events/coach-registered.event';
+import { AuditTrail } from '../../../common/domain/value-objects/audit-trail.value';
+import { CoachType } from '../enums/coach-type.enum';
 
 export class Coach extends AggregateRoot {
-  private id: CoachId;
-  private name: Name;
-  private dni: Dni;
-  private email: Email;
-  private password: Password;
-    apply: any;
- 
+  protected id: CoachId;
+  protected type: CoachType;
+  protected readonly auditTrail: AuditTrail;
 
-  constructor(
-    id: CoachId,
-    email: Email,
-    password: Password,
-    name: Name,  
-  ) {
+  public constructor(type: CoachType, auditTrail: AuditTrail) {
     super();
-    this.id = id;   
-    this.email = email;
-    this.password = password;
-    this.name = name;  
+    this.type = type;
+    this.auditTrail = auditTrail;
   }
-  public register() {
-    const event = new CoachRegisteredEvent(
-      this.id.getValue(),
-      this.email.getValue(),
-      this.password.getValue(),
-      this.name.getFirstName(),  
-         
-      
-    );
-    this.apply(event);
 
-  }
-   
   public getId(): CoachId {
     return this.id;
   }
 
-    public getEmail(): Email {
-    return this.email;
+  public getType(): CoachType {
+    return this.type;
   }
 
-  public getPassword(): Password {
-    return this.password;
-  }
-
-  public getName(): Name {
-    return this.name;
+  public getAuditTrail(): AuditTrail {
+    return this.auditTrail;
   }
 
   public changeId(id: CoachId) {
     this.id = id;
   }
- 
-
-  public changeEmail(email: Email): void {
-    this.email = email;
-  }
-
-  public changePassword(password: Password): void {
-    this.password = password;
-  }
-  public changeName(name: Name): void {
-    this.name = name;
-  }}
+}
