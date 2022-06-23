@@ -11,6 +11,6 @@ export class CoachTypeORM {
   @Column((type) => AuditTrailTypeORM, { prefix: false })
   public auditTrail: AuditTrailTypeORM;
 
-  @Column({ name: 'type', type: 'enum', enum: CoachType, default: CoachType.COMPANY })
+  @Column({ name: 'type', type: 'enum', enum: CoachType, default: CoachType.ORGANIZATION })
   readonly type: CoachType;
 }
