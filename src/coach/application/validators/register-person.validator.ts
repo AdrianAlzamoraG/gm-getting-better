@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AppNotification } from 'src/common/application/app.notification';
 import { RegisterPersonRequest } from '../dtos/request/register-person-request.dto';
 import { Repository } from 'typeorm';
-import { ClientTypeORM } from '../../infrastructure/persistence/typeorm/entities/client.typeorm';
+import { CoachTypeORM } from '../../infrastructure/persistence/typeorm/entities/coach.typeorm';
 import { PersonTypeORM } from '../../infrastructure/persistence/typeorm/entities/person.typeorm';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class RegisterPersonValidator {
     if (notification.hasErrors()) {
       return notification;
     }
-    const customer: ClientTypeORM = await this.personRepository.createQueryBuilder().where("dni = :dni", { dni }).getOne();
+    const customer: CoachTypeORM = await this.personRepository.createQueryBuilder().where("dni = :dni", { dni }).getOne();
     if (customer != null) {
       notification.addError('dni is taken', null);
     }

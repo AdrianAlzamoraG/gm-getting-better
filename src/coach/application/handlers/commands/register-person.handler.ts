@@ -2,7 +2,7 @@ import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PersonFactory } from '../../../domain/factories/person.factory';
-import { ClientId } from '../../../domain/value-objects/client-id.value';
+import { CoachId } from '../../../domain/value-objects/coach-id.value';
 import { Dni } from '../../../domain/value-objects/dni.value';
 import { Result } from 'typescript-result';
 import { AppNotification } from '../../../../common/application/app.notification';
@@ -26,14 +26,14 @@ export class RegisterPersonHandler
   }
 
   async execute(command: RegisterPerson) {
-    let clientId: number = 0;
+    let coachId: number = 0;
     const personNameResult: Result<AppNotification, PersonName> = PersonName.create(command.firstName, command.lastName);
     if (personNameResult.isFailure()) {
-      return clientId;
+      return coachId;
     }
     const dniResult: Result<AppNotification, Dni> = Dni.create(command.dni);
     if (dniResult.isFailure()) {
-      return clientId;
+      return coachId;
     }
     const auditTrail: AuditTrail = AuditTrail.from(
       command.createdAt != null ? DateTime.fromString(command.createdAt) : null,
@@ -45,13 +45,13 @@ export class RegisterPersonHandler
     let personTypeORM: PersonTypeORM = PersonMapper.toTypeORM(person);
     personTypeORM = await this.personRepository.save(personTypeORM);
     if (personTypeORM == null) {
-      return clientId;
+      return coachId;
     }
-    clientId = Number(personTypeORM.id);
-    person.changeId(ClientId.of(clientId));
+    coachId = Number(personTypeORM.id);
+    person.changeId(CoachId.of(coachId));
     person = this.publisher.mergeObjectContext(person);
     person.register();
     person.commit();
-    return clientId;
+    return coachId;
   }
 }

@@ -36,9 +36,9 @@ export class PersonApplicationService {
       updatedAt,
       updatedBy
     );
-    const clientId: number = await this.commandBus.execute(registerPerson);
+    const coachId: number = await this.commandBus.execute(registerPerson);
     const registerResponse: RegisterPersonResponse = new RegisterPersonResponse(
-      clientId,
+      coachId,
       registerPersonRequest.firstName,
       registerPersonRequest.lastName,
       registerPersonRequest.dni,

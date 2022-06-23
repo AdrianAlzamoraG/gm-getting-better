@@ -35,9 +35,9 @@ export class OrganizationApplicationService {
       updatedAt,
       updatedBy
     );
-    const clientId = await this.commandBus.execute(registerOrganization);
+    const coachId = await this.commandBus.execute(registerOrganization);
     const registerOrganizationResponse: RegisterOrganizationResponse = new RegisterOrganizationResponse(
-      clientId,
+      coachId,
       registerOrganizationRequest.name,
       registerOrganizationRequest.ruc
     );

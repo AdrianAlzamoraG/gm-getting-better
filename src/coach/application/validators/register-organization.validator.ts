@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AppNotification } from 'src/common/application/app.notification';
 import { Repository } from 'typeorm';
-import { ClientTypeORM } from '../../infrastructure/persistence/typeorm/entities/client.typeorm';
+import { CoachTypeORM } from '../../infrastructure/persistence/typeorm/entities/coach.typeorm';
 import { OrganizationTypeORM } from '../../infrastructure/persistence/typeorm/entities/organization.typeorm';
 import { RegisterOrganizationRequest } from '../dtos/request/register-organization-request.dto';
 
@@ -29,7 +29,7 @@ export class RegisterOrganizationValidator {
     if (notification.hasErrors()) {
       return notification;
     }
-    const customer: ClientTypeORM = await this.organizationRepository.createQueryBuilder().where("ruc = :ruc", { ruc }).getOne();
+    const customer: CoachTypeORM = await this.organizationRepository.createQueryBuilder().where("ruc = :ruc", { ruc }).getOne();
     if (customer != null) {
       notification.addError('ruc is taken', null);
     }
