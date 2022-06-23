@@ -1,27 +1,16 @@
-import { Column, Entity, Unique } from 'typeorm';
-import { CoachIdTypeORM } from './coach.id.typeorm';
-import { NameCoachTypeORM } from './namecoach.typeorm';
-import { EmailTypeORM } from 'src/common/infrastructure/persistence/typeorm/entities/email.typeorm';
-import { PasswordTypeORM } from 'src/common/infrastructure/persistence/typeorm/entities/password.typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, TableInheritance, Unique } from 'typeorm';
+import { AuditTrailTypeORM } from '../../../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
+import { CoachType } from '../../../../domain/enums/coach-type.enum';
 
-@Entity('coach')
-@Unique('UQ_coach', ['email.value'])
+@Entity('coachs')
+@TableInheritance({ column: 'type', })
 export class CoachTypeORM {
-  @Column((type) => CoachIdTypeORM, { prefix: false })
-  public id: CoachIdTypeORM;
+  @PrimaryGeneratedColumn('increment', { type: 'bigint', name: 'id', unsigned: true })
+  public id: number;
 
-  @Column((type) => NameCoachTypeORM, { prefix: false })
-  public nameCoach: NameCoachTypeORM;
+  @Column((type) => AuditTrailTypeORM, { prefix: false })
+  public auditTrail: AuditTrailTypeORM;
 
-  @Column((type) => EmailTypeORM, { prefix: false })
-  public email: EmailTypeORM;
-
-  @Column((type) => PasswordTypeORM, { prefix: false })
-  public password: PasswordTypeORM;
-
-  @Column('varchar', { name: 'description_coach', length: 500, nullable: false })
-  public descriptionCoach: string;
-
-  @Column('varchar', { name: 'img_coach', length: 500, nullable: false })
-  public imgCoach: string;
+  @Column({ name: 'type', type: 'enum', enum: CoachType, default: CoachType.COMPANY })
+  readonly type: CoachType;
 }
