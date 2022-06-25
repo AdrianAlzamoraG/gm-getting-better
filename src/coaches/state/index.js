@@ -11,9 +11,9 @@ var Client = /** @class */ (function () {
         var coachState = factory_1.StateFactory.getConcreteState(coach_state_type_1.CoachStateType.ACTIVE);
         var coach = new coach_1.Coach(coachState);
         coach.request();
-        //coachState = StateFactory.getConcreteState(CoachStateType.INACTIVE);
-        //coach.transitionTo(coachState);
-        //coach.request();
+        coachState = factory_1.StateFactory.getConcreteState(coach_state_type_1.CoachStateType.INACTIVE);
+        coach.transitionTo(coachState);
+        coach.request();
     };
     return Client;
 }());

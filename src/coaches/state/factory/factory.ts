@@ -5,7 +5,7 @@ import { InactiveCoach } from "../concrete/inactive-coach";
 
 export class StateFactory {
     // Factory Method
-    public static getConcreteState(userStateType: CoachStateType): CoachState {
+    public static getConcreteState(coachStateType: CoachStateType): CoachState {
         if (coachStateType == CoachStateType.ACTIVE)
             return new ActiveCoach();
 
