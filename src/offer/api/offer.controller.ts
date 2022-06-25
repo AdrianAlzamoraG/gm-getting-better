@@ -43,8 +43,8 @@ export class OfferController {
   })
   async getOffers(@Res({ passthrough: true }) response): Promise<object> {
     try {
-      const coachs = await this.queryBus.execute(new GetOffersQuery());
-      return ApiController.ok(response, coachs);
+      const coaches = await this.queryBus.execute(new GetOffersQuery());
+      return ApiController.ok(response, coaches);
     } catch (error) {
       return ApiController.serverError(response, error);
     }
@@ -57,7 +57,7 @@ export class OfferController {
     description: 'Offer returned',
     type: GetOffersDto,
   })
-  async getCompanyById(
+  async getOrganizationById(
     @Param('id') id: number,
     @Res({ passthrough: true }) response,
   ): Promise<object> {
