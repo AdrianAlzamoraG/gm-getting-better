@@ -16,18 +16,17 @@ import { DateTime } from '../../../../common/domain/value-objects/date-time.valu
 import { UserId } from '../../../../users/domain/value-objects/user-id.value';
 
 @CommandHandler(RegisterPerson)
-export class RegisterPersonHandler
-  implements ICommandHandler<RegisterPerson> {
+export class RegisterPersonHandler implements ICommandHandler<RegisterPerson> {
   constructor(
     @InjectRepository(PersonTypeORM)
     private personRepository: Repository<PersonTypeORM>,
     private publisher: EventPublisher,
-  ) {
-  }
+  ) {}
 
   async execute(command: RegisterPerson) {
-    let coachId: number = 0;
-    const personNameResult: Result<AppNotification, PersonName> = PersonName.create(command.firstName, command.lastName);
+    let coachId = 0;
+    const personNameResult: Result<AppNotification, PersonName> =
+      PersonName.create(command.firstName, command.lastName);
     if (personNameResult.isFailure()) {
       return coachId;
     }
@@ -39,9 +38,13 @@ export class RegisterPersonHandler
       command.createdAt != null ? DateTime.fromString(command.createdAt) : null,
       command.createdBy != null ? UserId.of(command.createdBy) : null,
       command.updatedAt != null ? DateTime.fromString(command.updatedAt) : null,
-      command.updatedBy != null ? UserId.of(command.updatedBy) : null
+      command.updatedBy != null ? UserId.of(command.updatedBy) : null,
     );
-    let person: Person = PersonFactory.createFrom(personNameResult.value, dniResult.value, auditTrail);
+    let person: Person = PersonFactory.createFrom(
+      personNameResult.value,
+      dniResult.value,
+      auditTrail,
+    );
     let personTypeORM: PersonTypeORM = PersonMapper.toTypeORM(person);
     personTypeORM = await this.personRepository.save(personTypeORM);
     if (personTypeORM == null) {

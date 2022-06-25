@@ -17,7 +17,12 @@ export class Person extends Coach {
   }
 
   public register() {
-    const event = new PersonRegistered(this.id.getValue(), this.name.getFirstName(), this.name.getLastName(), this.dni.getValue());
+    const event = new PersonRegistered(
+      this.id.getValue(),
+      this.name.getFirstName(),
+      this.name.getLastName(),
+      this.dni.getValue(),
+    );
     this.apply(event);
   }
 

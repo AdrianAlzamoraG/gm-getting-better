@@ -17,7 +17,11 @@ export class Organization extends Coach {
   }
 
   public register() {
-    const event = new OrganizationRegistered(this.id.getValue(), this.name.getValue(), this.ruc.getValue());
+    const event = new OrganizationRegistered(
+      this.id.getValue(),
+      this.name.getValue(),
+      this.ruc.getValue(),
+    );
     this.apply(event);
   }
 

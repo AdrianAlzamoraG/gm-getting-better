@@ -3,9 +3,10 @@ import { EventsHandler } from '@nestjs/cqrs/dist/decorators/events-handler.decor
 import { MoneyTransferred } from '../../../../transactions/domain/events/money-transferred.event';
 
 @EventsHandler(MoneyTransferred)
-export class MoneyTransferredHandler implements IEventHandler<MoneyTransferred> {
-  constructor(
-  ) {}
+export class MoneyTransferredHandler
+  implements IEventHandler<MoneyTransferred>
+{
+  constructor() {}
 
   async handle(event: MoneyTransferred) {
     console.log('Coaches BC - handle MoneyTransferred');

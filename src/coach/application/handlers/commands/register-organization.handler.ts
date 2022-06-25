@@ -17,17 +17,18 @@ import { UserId } from '../../../../users/domain/value-objects/user-id.value';
 
 @CommandHandler(RegisterOrganization)
 export class RegisterOrganizationHandler
-  implements ICommandHandler<RegisterOrganization> {
+  implements ICommandHandler<RegisterOrganization>
+{
   constructor(
     @InjectRepository(OrganizationTypeORM)
     private organizationRepository: Repository<OrganizationTypeORM>,
     private publisher: EventPublisher,
-  ) {
-  }
+  ) {}
 
   async execute(command: RegisterOrganization) {
-    let coachId: number = 0;
-    const organizationNameResult: Result<AppNotification, OrganizationName> = OrganizationName.create(command.name);
+    let coachId = 0;
+    const organizationNameResult: Result<AppNotification, OrganizationName> =
+      OrganizationName.create(command.name);
     if (organizationNameResult.isFailure()) {
       return coachId;
     }
@@ -39,11 +40,18 @@ export class RegisterOrganizationHandler
       command.createdAt != null ? DateTime.fromString(command.createdAt) : null,
       command.createdBy != null ? UserId.of(command.createdBy) : null,
       command.updatedAt != null ? DateTime.fromString(command.updatedAt) : null,
-      command.updatedBy != null ? UserId.of(command.updatedBy) : null
+      command.updatedBy != null ? UserId.of(command.updatedBy) : null,
     );
-    let organization: Organization = OrganizationFactory.createFrom(organizationNameResult.value, rucResult.value, auditTrail);
-    let organizationTypeORM: OrganizationTypeORM = OrganizationMapper.toTypeORM(organization);
-    organizationTypeORM = await this.organizationRepository.save(organizationTypeORM);
+    let organization: Organization = OrganizationFactory.createFrom(
+      organizationNameResult.value,
+      rucResult.value,
+      auditTrail,
+    );
+    let organizationTypeORM: OrganizationTypeORM =
+      OrganizationMapper.toTypeORM(organization);
+    organizationTypeORM = await this.organizationRepository.save(
+      organizationTypeORM,
+    );
     if (organizationTypeORM == null) {
       return coachId;
     }

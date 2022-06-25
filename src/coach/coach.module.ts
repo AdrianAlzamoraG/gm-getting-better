@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CoachesController } from './api/coaches.controller';
+import { CoachesController } from './api/coachs.controller';
 import { OrganizationApplicationService } from './application/services/organization-application.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { RegisterPersonValidator } from './application/validators/register-person.validator';
@@ -17,14 +17,28 @@ import { OrganizationRegisteredHandler } from './application/handlers/events/org
 import { GetCustomersOrganizationHandler } from './application/handlers/queries/get-customers-organization.handler';
 import { MoneyTransferredHandler } from './application/handlers/events/money-transferred.handler';
 
-export const CommandHandlers = [RegisterPersonHandler, RegisterOrganizationHandler];
-export const EventHandlers = [PersonRegisteredHandler, OrganizationRegisteredHandler, MoneyTransferredHandler];
-export const QueryHandlers = [GetCustomersPersonHandler, GetCustomersOrganizationHandler];
+export const CommandHandlers = [
+  RegisterPersonHandler,
+  RegisterOrganizationHandler,
+];
+export const EventHandlers = [
+  PersonRegisteredHandler,
+  OrganizationRegisteredHandler,
+  MoneyTransferredHandler,
+];
+export const QueryHandlers = [
+  GetCustomersPersonHandler,
+  GetCustomersOrganizationHandler,
+];
 
 @Module({
   imports: [
     CqrsModule,
-    TypeOrmModule.forFeature([CoachTypeORM, PersonTypeORM, OrganizationTypeORM]),
+    TypeOrmModule.forFeature([
+      CoachTypeORM,
+      PersonTypeORM,
+      OrganizationTypeORM,
+    ]),
   ],
   exports: [TypeOrmModule],
   controllers: [CoachesController],
@@ -35,7 +49,7 @@ export const QueryHandlers = [GetCustomersPersonHandler, GetCustomersOrganizatio
     RegisterOrganizationValidator,
     ...CommandHandlers,
     ...EventHandlers,
-    ...QueryHandlers
-  ]
+    ...QueryHandlers,
+  ],
 })
 export class CoachesModule {}

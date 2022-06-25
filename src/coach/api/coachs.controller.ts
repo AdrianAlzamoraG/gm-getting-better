@@ -17,18 +17,19 @@ export class CoachesController {
   constructor(
     private readonly personApplicationService: PersonApplicationService,
     private readonly organizationApplicationService: OrganizationApplicationService,
-    private readonly queryBus: QueryBus
+    private readonly queryBus: QueryBus,
   ) {}
 
   @Post('/person')
   async registerPerson(
     @Body() registerPersonRequest: RegisterPersonRequest,
-    @Res({ passthrough: true }) response
+    @Res({ passthrough: true }) response,
   ): Promise<object> {
     try {
-      const result: Result<AppNotification, RegisterPersonResponse> = await this.personApplicationService.register(registerPersonRequest);
+      const result: Result<AppNotification, RegisterPersonResponse> =
+        await this.personApplicationService.register(registerPersonRequest);
       if (result.isSuccess()) {
-          return ApiController.created(response, result.value);
+        return ApiController.created(response, result.value);
       }
       return ApiController.error(response, result.error.getErrors());
     } catch (error) {
@@ -39,10 +40,13 @@ export class CoachesController {
   @Post('/organization')
   async registerOrganization(
     @Body() registerOrganizationRequest: RegisterOrganizationRequest,
-    @Res({ passthrough: true }) response
+    @Res({ passthrough: true }) response,
   ): Promise<object> {
     try {
-      const result: Result<AppNotification, RegisterOrganizationResponse> = await this.organizationApplicationService.register(registerOrganizationRequest);
+      const result: Result<AppNotification, RegisterOrganizationResponse> =
+        await this.organizationApplicationService.register(
+          registerOrganizationRequest,
+        );
       if (result.isSuccess()) {
         return ApiController.created(response, result.value);
       }
@@ -53,9 +57,13 @@ export class CoachesController {
   }
 
   @Get('/person')
-  async getCustomersPerson(@Res({ passthrough: true }) response): Promise<object> {
+  async getCustomersPerson(
+    @Res({ passthrough: true }) response,
+  ): Promise<object> {
     try {
-      const customers = await this.queryBus.execute(new GetCustomersPersonQuery());
+      const customers = await this.queryBus.execute(
+        new GetCustomersPersonQuery(),
+      );
       return ApiController.ok(response, customers);
     } catch (error) {
       return ApiController.serverError(response, error);
@@ -63,9 +71,13 @@ export class CoachesController {
   }
 
   @Get('/organization')
-  async getCustomersOrganization(@Res({ passthrough: true }) response): Promise<object> {
+  async getCustomersOrganization(
+    @Res({ passthrough: true }) response,
+  ): Promise<object> {
     try {
-      const customers = await this.queryBus.execute(new GetCustomersOrganizationQuery());
+      const customers = await this.queryBus.execute(
+        new GetCustomersOrganizationQuery(),
+      );
       return ApiController.ok(response, customers);
     } catch (error) {
       return ApiController.serverError(response, error);

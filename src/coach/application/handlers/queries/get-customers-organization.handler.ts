@@ -4,7 +4,9 @@ import { getManager } from 'typeorm';
 import { GetCustomersOrganizationDto } from '../../dtos/queries/get-customers-organization.dto';
 
 @QueryHandler(GetCustomersOrganizationQuery)
-export class GetCustomersOrganizationHandler implements IQueryHandler<GetCustomersOrganizationQuery> {
+export class GetCustomersOrganizationHandler
+  implements IQueryHandler<GetCustomersOrganizationQuery>
+{
   constructor() {}
 
   async execute(query: GetCustomersOrganizationQuery) {
@@ -24,8 +26,10 @@ export class GetCustomersOrganizationHandler implements IQueryHandler<GetCustome
     if (ormCustomers.length <= 0) {
       return [];
     }
-    const customers: GetCustomersOrganizationDto[] = ormCustomers.map(function (ormCustomer) {
-      let customerDto = new GetCustomersOrganizationDto();
+    const customers: GetCustomersOrganizationDto[] = ormCustomers.map(function (
+      ormCustomer,
+    ) {
+      const customerDto = new GetCustomersOrganizationDto();
       customerDto.id = Number(ormCustomer.id);
       customerDto.organizationName = ormCustomer.organizationName;
       customerDto.ruc = ormCustomer.ruc;

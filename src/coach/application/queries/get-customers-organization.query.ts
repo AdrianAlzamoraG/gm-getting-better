@@ -1,2 +1,1 @@
-export class GetCustomersOrganizationQuery {
-}
+export class GetCustomersOrganizationQuery {}

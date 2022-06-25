@@ -19,7 +19,8 @@ export class PersonApplicationService {
   async register(
     registerPersonRequest: RegisterPersonRequest,
   ): Promise<Result<AppNotification, RegisterPersonResponse>> {
-    const notification: AppNotification = await this.registerPersonValidator.validate(registerPersonRequest);
+    const notification: AppNotification =
+      await this.registerPersonValidator.validate(registerPersonRequest);
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
@@ -34,7 +35,7 @@ export class PersonApplicationService {
       createdAt,
       createdBy,
       updatedAt,
-      updatedBy
+      updatedBy,
     );
     const coachId: number = await this.commandBus.execute(registerPerson);
     const registerResponse: RegisterPersonResponse = new RegisterPersonResponse(

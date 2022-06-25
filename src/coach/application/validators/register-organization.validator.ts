@@ -11,13 +11,12 @@ export class RegisterOrganizationValidator {
   constructor(
     @InjectRepository(OrganizationTypeORM)
     private organizationRepository: Repository<OrganizationTypeORM>,
-  ) {
-  }
+  ) {}
 
   public async validate(
     registerOrganizationRequest: RegisterOrganizationRequest,
   ): Promise<AppNotification> {
-    let notification: AppNotification = new AppNotification();
+    const notification: AppNotification = new AppNotification();
     const name: string = registerOrganizationRequest.name.trim();
     if (name.length <= 0) {
       notification.addError('name is required', null);
@@ -29,7 +28,10 @@ export class RegisterOrganizationValidator {
     if (notification.hasErrors()) {
       return notification;
     }
-    const customer: CoachTypeORM = await this.organizationRepository.createQueryBuilder().where("ruc = :ruc", { ruc }).getOne();
+    const customer: CoachTypeORM = await this.organizationRepository
+      .createQueryBuilder()
+      .where('ruc = :ruc', { ruc })
+      .getOne();
     if (customer != null) {
       notification.addError('ruc is taken', null);
     }

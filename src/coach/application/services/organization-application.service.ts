@@ -19,7 +19,10 @@ export class OrganizationApplicationService {
   async register(
     registerOrganizationRequest: RegisterOrganizationRequest,
   ): Promise<Result<AppNotification, RegisterOrganizationResponse>> {
-    const notification: AppNotification = await this.registerOrganizationValidator.validate(registerOrganizationRequest);
+    const notification: AppNotification =
+      await this.registerOrganizationValidator.validate(
+        registerOrganizationRequest,
+      );
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
@@ -33,14 +36,15 @@ export class OrganizationApplicationService {
       createdAt,
       createdBy,
       updatedAt,
-      updatedBy
+      updatedBy,
     );
     const coachId = await this.commandBus.execute(registerOrganization);
-    const registerOrganizationResponse: RegisterOrganizationResponse = new RegisterOrganizationResponse(
-      coachId,
-      registerOrganizationRequest.name,
-      registerOrganizationRequest.ruc
-    );
+    const registerOrganizationResponse: RegisterOrganizationResponse =
+      new RegisterOrganizationResponse(
+        coachId,
+        registerOrganizationRequest.name,
+        registerOrganizationRequest.ruc,
+      );
     return Result.ok(registerOrganizationResponse);
   }
 }

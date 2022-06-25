@@ -1,23 +1,25 @@
-import { AppNotification } from "src/common/application/app.notification";
-import { Result } from "typescript-result";
+import { AppNotification } from 'src/common/application/app.notification';
+import { Result } from 'typescript-result';
 
 export class Ruc {
   private value: string;
-  private static MAX_LENGTH: number = 11;
+  private static MAX_LENGTH = 11;
 
   private constructor(value: string) {
     this.value = value;
   }
 
-  public static create(ruc: string): Result<AppNotification, Ruc>
-  {
-    let notification: AppNotification = new AppNotification();
-    ruc = (ruc ?? "").trim();
-    if (ruc === "") {
+  public static create(ruc: string): Result<AppNotification, Ruc> {
+    const notification: AppNotification = new AppNotification();
+    ruc = (ruc ?? '').trim();
+    if (ruc === '') {
       notification.addError('ruc is required', null);
     }
     if (ruc.length != this.MAX_LENGTH) {
-      notification.addError('ruc field must have ' + Ruc.MAX_LENGTH + ' characters', null);
+      notification.addError(
+        'ruc field must have ' + Ruc.MAX_LENGTH + ' characters',
+        null,
+      );
     }
     const regExp = new RegExp('^[0-9]+$');
     if (regExp.test(ruc) === false) {

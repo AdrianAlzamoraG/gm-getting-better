@@ -1,4 +1,4 @@
 export enum CoachType {
-    ORGANIZATION = 'O',
-    PERSON = 'P'
-  }
+  ORGANIZATION = 'O',
+  PERSON = 'P',
+}

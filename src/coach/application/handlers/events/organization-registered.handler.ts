@@ -3,7 +3,9 @@ import { EventsHandler } from '@nestjs/cqrs/dist/decorators/events-handler.decor
 import { OrganizationRegistered } from '../../../domain/events/organization-registered.event';
 
 @EventsHandler(OrganizationRegistered)
-export class OrganizationRegisteredHandler implements IEventHandler<OrganizationRegistered> {
+export class OrganizationRegisteredHandler
+  implements IEventHandler<OrganizationRegistered>
+{
   constructor() {}
 
   async handle(event: OrganizationRegistered) {

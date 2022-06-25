@@ -4,7 +4,11 @@ import { Person } from '../entities/person.entity';
 import { PersonName } from '../../../common/domain/value-objects/person-name.value';
 
 export class PersonFactory {
-  public static createFrom(name: PersonName, dni: Dni, auditTrail: AuditTrail): Person {
+  public static createFrom(
+    name: PersonName,
+    dni: Dni,
+    auditTrail: AuditTrail,
+  ): Person {
     return new Person(name, dni, auditTrail);
   }
 }
