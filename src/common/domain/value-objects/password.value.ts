@@ -15,7 +15,7 @@ export class Password {
   }
 
   public static create(value: string): Result<AppNotification, Password> {
-    let notification: AppNotification = new AppNotification();
+    const notification: AppNotification = new AppNotification();
     value = (value ?? '').trim();
     if (value === '') {
       notification.addError('password is required', null);
