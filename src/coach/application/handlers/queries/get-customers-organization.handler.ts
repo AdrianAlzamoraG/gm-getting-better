@@ -15,7 +15,7 @@ export class GetCustomersOrganizationHandler implements IQueryHandler<GetCustome
       organization_name as organizationName,
       ruc
     FROM 
-      coachs
+      coaches
     WHERE
       type = 'C'
     ORDER BY

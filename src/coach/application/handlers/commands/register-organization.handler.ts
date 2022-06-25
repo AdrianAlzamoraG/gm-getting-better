@@ -1,6 +1,6 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RegisterOrganization } from 'src/coachs/application/commands/register-organization.command';
+import { RegisterOrganization } from 'src/coaches/application/commands/register-organization.command';
 import { Repository } from 'typeorm';
 import { CoachId } from '../../../domain/value-objects/coach-id.value';
 import { Ruc } from '../../../domain/value-objects/ruc.value';

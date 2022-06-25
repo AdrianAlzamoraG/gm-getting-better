@@ -12,8 +12,8 @@ import { RegisterOrganizationRequest } from '../application/dtos/request/registe
 import { RegisterOrganizationResponse } from '../application/dtos/response/register-organization-response.dto';
 import { GetCustomersOrganizationQuery } from '../application/queries/get-customers-organization.query';
 
-@Controller('coachs')
-export class CoachsController {
+@Controller('coaches')
+export class CoachesController {
   constructor(
     private readonly personApplicationService: PersonApplicationService,
     private readonly organizationApplicationService: OrganizationApplicationService,

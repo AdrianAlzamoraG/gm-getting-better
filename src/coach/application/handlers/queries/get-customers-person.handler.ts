@@ -16,7 +16,7 @@ export class GetCustomersPersonHandler implements IQueryHandler<GetCustomersPers
       last_name as lastName,
       dni
     FROM 
-      coachs
+      coaches
     WHERE
       type = 'P'
     ORDER BY

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CoachsController } from './api/coachs.controller';
+import { CoachesController } from './api/coaches.controller';
 import { OrganizationApplicationService } from './application/services/organization-application.service';
 import { CqrsModule } from '@nestjs/cqrs';
 import { RegisterPersonValidator } from './application/validators/register-person.validator';
@@ -27,7 +27,7 @@ export const QueryHandlers = [GetCustomersPersonHandler, GetCustomersOrganizatio
     TypeOrmModule.forFeature([CoachTypeORM, PersonTypeORM, OrganizationTypeORM]),
   ],
   exports: [TypeOrmModule],
-  controllers: [CoachsController],
+  controllers: [CoachesController],
   providers: [
     PersonApplicationService,
     OrganizationApplicationService,
@@ -38,4 +38,4 @@ export const QueryHandlers = [GetCustomersPersonHandler, GetCustomersOrganizatio
     ...QueryHandlers
   ]
 })
-export class CoachsModule {}
+export class CoachesModule {}
