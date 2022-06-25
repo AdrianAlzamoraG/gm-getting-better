@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS coaches(
   dni VARCHAR(8) NULL,
   PRIMARY KEY(id),
   UNIQUE INDEX UQ_coaches_ruc(ruc),
-  UNIQUE INDEX UQ_coaches_organization(organization_name),
+  UNIQUE INDEX UQ_coaches_organization_name(organization_name),
   UNIQUE INDEX UQ_coaches_dni(dni),
   KEY IX_coaches_created_by(created_by),
   KEY IX_coaches_updated_by(updated_by),
@@ -59,25 +59,25 @@ CREATE TABLE IF NOT EXISTS coaches(
 
 
 CREATE TABLE IF NOT EXISTS offers(
+
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  type ENUM ('O', 'P') NOT NULL DEFAULT 'O',
+  title VARCHAR(150) NOT NULL,
+  balance DECIMAL(10,2) NULL,
+  currency VARCHAR(3) NULL,
+  coach_id BIGINT UNSIGNED NOT NULL,
   created_at DATETIME NULL,
   created_by BIGINT UNSIGNED NULL,
   updated_at DATETIME NULL,
   updated_by BIGINT UNSIGNED NULL,
-  organization_name VARCHAR(150) NULL,
-  ruc VARCHAR(11) NULL,
-  first_name VARCHAR(75) NULL,
-  last_name VARCHAR(75) NULL,
-  dni VARCHAR(8) NULL,
-  PRIMARY KEY(id),
-  UNIQUE INDEX UQ_coaches_ruc(ruc),
-  UNIQUE INDEX UQ_coaches_organization_name(organization_name), 
-  UNIQUE INDEX UQ_coaches_dni(dni),
-  KEY IX_coaches_created_by(created_by),
-  KEY IX_coaches_updated_by(updated_by),
-  CONSTRAINT FK_coaches_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_coaches_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
+  PRIMARY KEY (id),
+  UNIQUE KEY UQ_offers_title(title),
+  KEY IX_offers_coach_id(coach_id),
+  KEY IX_offers_created_by(created_by),
+  KEY IX_offers_updated_by(updated_by),
+  CONSTRAINT FK_offers_coach_id FOREIGN KEY(coach_id) REFERENCES coaches(id),
+  CONSTRAINT FK_offers_created_by FOREIGN KEY(created_by) REFERENCES users(id),
+  CONSTRAINT FK_offers_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 

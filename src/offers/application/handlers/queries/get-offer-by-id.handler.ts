@@ -30,7 +30,7 @@ export class GetOfferByIdHandler implements IQueryHandler<GetOfferByIdQuery> {
     const ormOffer = ormOffers[0];
     const offerDto = new GetOffersDto();
     offerDto.id = Number(ormOffer.id);
-    offerDto.title = ormOffer.number;
+    offerDto.title = ormOffer.title;
     offerDto.balance = Number(ormOffer.balance);
     offerDto.coachId = Number(ormOffer.client_id);
     offerDto.createdAt = ormOffer.created_at;

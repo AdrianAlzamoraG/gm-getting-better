@@ -12,7 +12,7 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
     const sql = `
     SELECT
       a.id,
-      a.number,
+      a.title,
       a.balance,
       a.client_id,
       a.created_at,
@@ -30,7 +30,7 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
     const offers: GetOffersDto[] = ormOffers.map(function (ormOffer) {
       const offerDto = new GetOffersDto();
       offerDto.id = Number(ormOffer.id);
-      offerDto.title = ormOffer.number;
+      offerDto.title = ormOffer.title;
       offerDto.balance = Number(ormOffer.balance);
       offerDto.coachId = Number(ormOffer.client_id);
       offerDto.createdAt = ormOffer.created_at;

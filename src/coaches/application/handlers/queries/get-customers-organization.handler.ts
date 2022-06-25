@@ -19,7 +19,7 @@ export class GetCustomersOrganizationHandler
     FROM 
       coaches
     WHERE
-      type = 'C'
+      type = 'O'
     ORDER BY
       organization_name;`;
     const ormCustomers = await manager.query(sql);
