@@ -1,7 +1,7 @@
 import { Result } from 'typescript-result';
 import { AppNotification } from '../../application/app.notification';
 
-export class CoachName {
+export class CompanyName {
   private readonly value: string;
   private static MAX_LENGTH = 150;
 
@@ -13,7 +13,7 @@ export class CoachName {
     return this.value;
   }
 
-  public static create(name: string): Result<AppNotification, CoachName> {
+  public static create(name: string): Result<AppNotification, CompanyName> {
     const notification: AppNotification = new AppNotification();
     name = (name ?? '').trim();
     if (name === '') {
@@ -30,6 +30,6 @@ export class CoachName {
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
-    return Result.ok(new CoachName(name));
+    return Result.ok(new CompanyName(name));
   }
 }
