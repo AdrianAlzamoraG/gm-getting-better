@@ -4,9 +4,7 @@ import { GetOffersDto } from '../../dtos/queries/get-offers.dto';
 import { GetOfferByIdQuery } from '../../queries/get-offer-by-id.query';
 
 @QueryHandler(GetOfferByIdQuery)
-export class GetOfferByIdHandler
-  implements IQueryHandler<GetOfferByIdQuery>
-{
+export class GetOfferByIdHandler implements IQueryHandler<GetOfferByIdQuery> {
   constructor() {}
 
   async execute(query: GetOfferByIdQuery) {

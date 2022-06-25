@@ -13,10 +13,7 @@ import { OpenOfferHandler } from './application/handlers/commands/open-offer.han
 import { MoneyTransferService } from './domain/services/money-transfer.service';
 
 export const CommandHandlers = [OpenOfferHandler];
-export const EventHandlers = [
-  OfferOpenedHandler,
-  CostSavedHandler,
-];
+export const EventHandlers = [OfferOpenedHandler, CostSavedHandler];
 export const QueryHandlers = [GetOffersHandler, GetOfferByIdHandler];
 
 @Module({

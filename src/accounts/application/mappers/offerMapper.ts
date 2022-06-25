@@ -8,8 +8,7 @@ import { AuditTrailTypeORM } from '../../../common/infrastructure/persistence/ty
 export class OfferMapper {
   public static toTypeORM(account: Offer): OfferTypeORM {
     const offerTypeORM: OfferTypeORM = new OfferTypeORM();
-    offerTypeORM.id =
-      account.getId() != null ? account.getId().getValue() : 0;
+    offerTypeORM.id = account.getId() != null ? account.getId().getValue() : 0;
     offerTypeORM.title =
       account.getTitle() != null
         ? OfferTitleTypeorm.from(account.getTitle().getValue())

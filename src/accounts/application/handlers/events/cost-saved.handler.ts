@@ -64,9 +64,8 @@ export class CostSavedHandler implements IEventHandler<CostSaved> {
         console.log('MoneyDeposited error');
         return;
       }
-      const completeCustomization: CompleteCustomization = new CompleteCustomization(
-        event.costumizationId,
-      );
+      const completeCustomization: CompleteCustomization =
+        new CompleteCustomization(event.costumizationId);
       await this.commandBus.execute(completeCustomization);
     });
   }
