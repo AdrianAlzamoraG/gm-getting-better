@@ -7,20 +7,16 @@ import { EmailTypeORM } from '../../infrastructure/persistence/typeorm/value-obj
 import { PasswordTypeORM } from '../../infrastructure/persistence/typeorm/value-objects/password.typeorm';
 
 export class UserMapper {
-    public static toTypeORM(user: User): UserTypeORM {
-      const userTypeORM: UserTypeORM = new UserTypeORM();
-      userTypeORM.id = user.getId() != null ? user.getId().getValue() : 0;
-      userTypeORM.name = NameTypeORM.from(
-        user.getName().getFirstName(),
-        user.getName().getLastName(),
-      );
-      userTypeORM.dni = DniTypeORM.from(user.getDni().getValue());
-      userTypeORM.email = EmailTypeORM.from(
-        user.getEmail().getValue(),
-      );
-      userTypeORM.password = PasswordTypeORM.from(
-        user.getPassword().getValue(),
-      );
-      return userTypeORM;
-    }
+  public static toTypeORM(user: User): UserTypeORM {
+    const userTypeORM: UserTypeORM = new UserTypeORM();
+    userTypeORM.id = user.getId() != null ? user.getId().getValue() : 0;
+    userTypeORM.name = NameTypeORM.from(
+      user.getName().getFirstName(),
+      user.getName().getLastName(),
+    );
+    userTypeORM.dni = DniTypeORM.from(user.getDni().getValue());
+    userTypeORM.email = EmailTypeORM.from(user.getEmail().getValue());
+    userTypeORM.password = PasswordTypeORM.from(user.getPassword().getValue());
+    return userTypeORM;
   }
+}

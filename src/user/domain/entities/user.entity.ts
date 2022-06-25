@@ -12,8 +12,7 @@ export class User extends AggregateRoot {
   private dni: Dni;
   private email: Email;
   private password: Password;
-    apply: any;
- 
+  apply: any;
 
   constructor(
     id: UserId,
@@ -21,7 +20,6 @@ export class User extends AggregateRoot {
     dni: Dni,
     email: Email,
     password: Password,
-  
   ) {
     super();
     this.id = id;
@@ -29,7 +27,6 @@ export class User extends AggregateRoot {
     this.dni = dni;
     this.email = email;
     this.password = password;
-    
   }
   public register() {
     const event = new UserRegisteredEvent(
@@ -39,12 +36,10 @@ export class User extends AggregateRoot {
       this.dni.getValue(),
       this.email.getValue(),
       this.password.getValue(),
-      
     );
     this.apply(event);
-
   }
-   
+
   public getId(): UserId {
     return this.id;
   }
@@ -84,6 +79,4 @@ export class User extends AggregateRoot {
   public changePassword(password: Password): void {
     this.password = password;
   }
-
-  
 }

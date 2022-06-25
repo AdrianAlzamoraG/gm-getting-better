@@ -1,4 +1,4 @@
-import { CoachId } from '../../../coaches/domain/value-objects/coaches-id.value';
+import { CoachId } from '../../../coaches/domain/value-objects/coach-id.value';
 import { Money } from '../../../common/domain/value-objects/money.value';
 import { Offer } from '../entities/offer.entity';
 import { AuditTrail } from '../../../common/domain/value-objects/audit-trail.value';
