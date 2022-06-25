@@ -6,31 +6,31 @@ import { BalanceTypeORM } from '../../infrastructure/persistence/typeorm/value-o
 import { AuditTrailTypeORM } from '../../../common/infrastructure/persistence/typeorm/value-objects/audit-trail.typeorm';
 
 export class OfferMapper {
-  public static toTypeORM(account: Offer): OfferTypeORM {
+  public static toTypeORM(offer: Offer): OfferTypeORM {
     const offerTypeORM: OfferTypeORM = new OfferTypeORM();
-    offerTypeORM.id = account.getId() != null ? account.getId().getValue() : 0;
+    offerTypeORM.id = offer.getId() != null ? offer.getId().getValue() : 0;
     offerTypeORM.title =
-      account.getTitle() != null
-        ? OfferTitleTypeorm.from(account.getTitle().getValue())
+      offer.getTitle() != null
+        ? OfferTitleTypeorm.from(offer.getTitle().getValue())
         : null;
     offerTypeORM.balance =
-      account.getBalance() != null
+      offer.getBalance() != null
         ? BalanceTypeORM.from(
-            account.getBalance().getAmount(),
-            account.getBalance().getCurrency(),
+            offer.getBalance().getAmount(),
+            offer.getBalance().getCurrency(),
           )
         : null;
     offerTypeORM.coachId =
-      account.getCoachId() != null
-        ? CoachIdTypeorm.from(account.getCoachId().getValue())
+      offer.getCoachId() != null
+        ? CoachIdTypeorm.from(offer.getCoachId().getValue())
         : null;
     offerTypeORM.auditTrail =
-      account.getAuditTrail() != null
+      offer.getAuditTrail() != null
         ? AuditTrailTypeORM.from(
-            account.getAuditTrail().getCreatedAt().format(),
-            account.getAuditTrail().getCreatedBy().getValue(),
-            account.getAuditTrail().getUpdatedAt().format(),
-            account.getAuditTrail().getUpdatedBy().getValue(),
+            offer.getAuditTrail().getCreatedAt().format(),
+            offer.getAuditTrail().getCreatedBy().getValue(),
+            offer.getAuditTrail().getUpdatedAt().format(),
+            offer.getAuditTrail().getUpdatedBy().getValue(),
           )
         : null;
     return offerTypeORM;

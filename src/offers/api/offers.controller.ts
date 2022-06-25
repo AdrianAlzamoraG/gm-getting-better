@@ -9,7 +9,7 @@ import { QueryBus } from '@nestjs/cqrs';
 import { GetOfferByIdQuery } from '../application/queries/get-offer-by-id.query';
 import { GetOffersQuery } from '../application/queries/get-offers.query';
 
-@Controller('accounts')
+@Controller('offers')
 export class OffersController {
   constructor(
     private readonly offersApplicationService: OffersApplicationService,

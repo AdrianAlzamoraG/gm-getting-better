@@ -1,4 +1,4 @@
-import { CoachId } from '../../../coaches/domain/value-objects/offer-id.value';
+import { CoachId } from '../../../coach/domain/value-objects/coach-id.value';
 import { Money } from '../../../common/domain/value-objects/money.value';
 import { AppNotification } from '../../../common/application/app.notification';
 import { Result } from 'typescript-result';
@@ -52,7 +52,7 @@ export class Offer extends AggregateRoot {
       notification.addError('The amount must be greater than zero', null);
     }
     if (!this.hasIdentity()) {
-      notification.addError('The account has no identity', null);
+      notification.addError('The offer has no identity', null);
     }
     return notification;
   }

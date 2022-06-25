@@ -12,7 +12,7 @@ import { TransferMoneyValidator } from './application/validators/transfer-money.
 // import { WithdrawMoneyHandler } from './application/handlers/commands/withdraw-money.handler';
 // import { TransferMoneyHandler } from './application/handlers/commands/transfer-money.handler';
 import { CustomizationTypeorm } from './infrastructure/persistence/typeorm/entities/customization.typeorm';
-import { OfferTypeORM } from '../offers/infrastructure/persistence/typeorm/entities/offer.typeorm';
+import { OfferTypeORM } from '../offers/infrastructure/persistence/typeorm/entities/offerTypeORM';
 import { CostSavedHandler } from './application/handlers/events/cost-saved.handler';
 import { CompleteCustomizationHandler } from './application/handlers/commands/complete-customization.handler';
 

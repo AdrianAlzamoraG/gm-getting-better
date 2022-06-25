@@ -12,7 +12,7 @@ import { OfferTitle } from '../../../domain/value-objects/offer-title.value';
 import { OfferFactory } from '../../../domain/factories/offer.factory';
 import { Money } from '../../../../common/domain/value-objects/money.value';
 import { Currency } from '../../../../common/domain/enums/currency.enum';
-import { CoachId } from '../../../../coaches/domain/value-objects/coach-id.value';
+import { CoachId } from '../../../../coach/domain/value-objects/coach-id.value';
 import { OfferId } from '../../../domain/value-objects/offer-id.value';
 import { CompleteCustomization } from '../../../../customizations/application/commands/complete-customization.command';
 
@@ -39,14 +39,14 @@ export class CostSavedHandler implements IEventHandler<CostSaved> {
     if (offerTitleResult.isFailure()) {
       return;
     }
-    const accountAmount: Money = Money.create(
+    const offerAmount: Money = Money.create(
       offerTypeORM.balance.balance,
       offerTypeORM.balance.currency,
     );
     const offer: Offer = OfferFactory.withId(
       OfferId.of(offerTypeORM.id),
       offerTitleResult.value,
-      accountAmount,
+      offerAmount,
       CoachId.of(offerTypeORM.coachId.value),
       null,
     );
@@ -65,7 +65,7 @@ export class CostSavedHandler implements IEventHandler<CostSaved> {
         return;
       }
       const completeCustomization: CompleteCustomization =
-        new CompleteCustomization(event.costumizationId);
+        new CompleteCustomization(event.customizationId);
       await this.commandBus.execute(completeCustomization);
     });
   }

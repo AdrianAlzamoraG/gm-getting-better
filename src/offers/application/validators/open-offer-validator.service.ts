@@ -28,7 +28,7 @@ export class OpenOfferValidator {
       .where('title = :title', { title })
       .getOne();
     if (offerTypeORM != null) {
-      notification.addError('Account number is taken', null);
+      notification.addError('Offer number is taken', null);
     }
     return notification;
   }

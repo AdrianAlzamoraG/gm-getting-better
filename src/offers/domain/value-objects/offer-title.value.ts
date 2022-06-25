@@ -13,11 +13,11 @@ export class OfferTitle {
     const notification: AppNotification = new AppNotification();
     value = (value ?? '').trim();
     if (value === '') {
-      notification.addError('account number is required', null);
+      notification.addError('offer number is required', null);
     }
     if (value.length > this.MAX_LENGTH) {
       notification.addError(
-        'The maximum length of an account number is ' +
+        'The maximum length of an offer number is ' +
           this.MAX_LENGTH +
           ' characters including spaces',
         null,

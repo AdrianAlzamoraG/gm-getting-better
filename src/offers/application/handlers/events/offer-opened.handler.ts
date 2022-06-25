@@ -7,7 +7,7 @@ export class OfferOpenedHandler implements IEventHandler<OfferOpened> {
   constructor() {}
 
   async handle(event: OfferOpened) {
-    console.log('handle logic for AccountOpened');
+    console.log('handle logic for OfferOpened');
     console.log(event);
   }
 }

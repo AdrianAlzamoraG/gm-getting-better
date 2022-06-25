@@ -20,25 +20,25 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
       a.updated_at,
       a.updated_by
     FROM 
-      accounts a
+      offers a
     ORDER BY
       a.created_at DESC;`;
-    const ormAccounts = await manager.query(sql);
-    if (ormAccounts.length <= 0) {
+    const ormOffers = await manager.query(sql);
+    if (ormOffers.length <= 0) {
       return [];
     }
-    const accounts: GetOffersDto[] = ormAccounts.map(function (ormAccount) {
-      const accountDto = new GetOffersDto();
-      accountDto.id = Number(ormAccount.id);
-      accountDto.title = ormAccount.number;
-      accountDto.balance = Number(ormAccount.balance);
-      accountDto.coachId = Number(ormAccount.client_id);
-      accountDto.createdAt = ormAccount.created_at;
-      accountDto.createdBy = ormAccount.created_by;
-      accountDto.updatedAt = ormAccount.updated_at;
-      accountDto.updatedBy = ormAccount.updated_by;
-      return accountDto;
+    const offers: GetOffersDto[] = ormOffers.map(function (ormOffer) {
+      const offerDto = new GetOffersDto();
+      offerDto.id = Number(ormOffer.id);
+      offerDto.title = ormOffer.number;
+      offerDto.balance = Number(ormOffer.balance);
+      offerDto.coachId = Number(ormOffer.client_id);
+      offerDto.createdAt = ormOffer.created_at;
+      offerDto.createdBy = ormOffer.created_by;
+      offerDto.updatedAt = ormOffer.updated_at;
+      offerDto.updatedBy = ormOffer.updated_by;
+      return offerDto;
     });
-    return accounts;
+    return offers;
   }
 }

@@ -9,12 +9,12 @@ export class CustomizationMapper {
       new CustomizationTypeorm();
     customizationTypeorm.type = customization.getType();
     customizationTypeorm.status = customization.getStatus();
-    customizationTypeorm.accountIdFrom = OfferIdFromTypeorm.from(
-      customization.getAccountFrom().getValue(),
+    customizationTypeorm.offerIdFrom = OfferIdFromTypeorm.from(
+      customization.getOfferFrom().getValue(),
     );
-    customizationTypeorm.accountIdTo =
-      customization.getAccountTo() != null
-        ? OfferIdFromTypeorm.from(customization.getAccountTo().getValue())
+    customizationTypeorm.offerIdTo =
+      customization.getOfferTo() != null
+        ? OfferIdFromTypeorm.from(customization.getOfferTo().getValue())
         : null;
     customizationTypeorm.amount = AmountTypeORM.from(
       customization.getAmount().getAmount(),
