@@ -57,25 +57,6 @@ CREATE TABLE IF NOT EXISTS clients(
   CONSTRAINT FK_clients_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS accounts(
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  number VARCHAR(15) NOT NULL,
-  balance DECIMAL(10,2) NULL,
-  currency VARCHAR(3) NULL,
-  client_id BIGINT UNSIGNED NOT NULL,
-  created_at DATETIME NULL,
-  created_by BIGINT UNSIGNED NULL,
-  updated_at DATETIME NULL,
-  updated_by BIGINT UNSIGNED NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY UQ_accounts_number(number),
-  KEY IX_accounts_client_id(client_id),
-  KEY IX_accounts_created_by(created_by),
-  KEY IX_accounts_updated_by(updated_by),
-  CONSTRAINT FK_accounts_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
-  CONSTRAINT FK_accounts_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_accounts_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS offers(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -89,39 +70,16 @@ CREATE TABLE IF NOT EXISTS offers(
   updated_by BIGINT UNSIGNED NULL,
   PRIMARY KEY (id),
   UNIQUE KEY UQ_offers_title(title),
-  /* KEY IX_accounts_client_id(client_id),
-  KEY IX_accounts_created_by(created_by),
-  KEY IX_accounts_updated_by(updated_by), */
-  /* CONSTRAINT FK_accounts_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
+  KEY IX_offers_client_id(client_id),
+  KEY IX_offers_created_by(created_by),
+  KEY IX_offers_updated_by(updated_by),
+  CONSTRAINT FK_accounts_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
   CONSTRAINT FK_accounts_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_accounts_updated_by FOREIGN KEY(updated_by) REFERENCES users(id) */
+  CONSTRAINT FK_accounts_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE IF NOT EXISTS transactions(
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  type CHAR(1) NOT NULL,
-  status TINYINT UNSIGNED NOT NULL,
-  from_account_id BIGINT UNSIGNED NOT NULL,
-  to_account_id BIGINT UNSIGNED NULL,
-  amount DECIMAL(10,2) NULL,
-  currency VARCHAR(3) NULL,
-  created_at DATETIME NULL,
-  created_by BIGINT UNSIGNED NULL,
-  updated_at DATETIME NULL,
-  updated_by BIGINT UNSIGNED NULL,
-  PRIMARY KEY (id),
-  KEY IX_transactions_from_account_id(from_account_id),
-  KEY IX_transactions_to_account_id(to_account_id),
-  KEY IX_transactions_created_by(created_by),
-  KEY IX_transactions_updated_by(updated_by),
-  CONSTRAINT FK_transactions_from_account_id FOREIGN KEY(from_account_id) REFERENCES accounts(id),
-  CONSTRAINT FK_transactions_to_account_id FOREIGN KEY(to_account_id) REFERENCES accounts(id),
-  CONSTRAINT FK_transactions_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_transactions_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE IF NOT EXISTS settings(
+CREATE TABLE IF NOT EXISTS customizations(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   type CHAR(1) NOT NULL,
   status TINYINT UNSIGNED NOT NULL,
@@ -134,12 +92,12 @@ CREATE TABLE IF NOT EXISTS settings(
   updated_at DATETIME NULL,
   updated_by BIGINT UNSIGNED NULL,
   PRIMARY KEY (id),
-  KEY IX_transactions_from_account_id(from_account_id),
-  KEY IX_transactions_to_account_id(to_account_id),
-/*   KEY IX_transactions_created_by(created_by),
-  KEY IX_transactions_updated_by(updated_by), */
-  CONSTRAINT FK_transactions_from_account_id FOREIGN KEY(from_account_id) REFERENCES offers(id),
-  CONSTRAINT FK_transactions_to_account_id FOREIGN KEY(to_account_id) REFERENCES offers(id),
-/*   CONSTRAINT FK_transactions_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_transactions_updated_by FOREIGN KEY(updated_by) REFERENCES users(id) */
+  KEY IX_customizations_from_account_id(from_offer_id),
+  KEY IX_customizations_to_account_id(to_offer_id),
+  KEY IX_customizations_created_by(created_by),
+  KEY IX_customizations_updated_by(updated_by),
+  CONSTRAINT FK_customizations_from_account_id FOREIGN KEY(from_account_id) REFERENCES offers(id),
+  CONSTRAINT FK_customizations_to_account_id FOREIGN KEY(to_account_id) REFERENCES offers(id),
+  CONSTRAINT FK_customizations_created_by FOREIGN KEY(created_by) REFERENCES users(id),
+  CONSTRAINT FK_customizations_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
