@@ -5,9 +5,9 @@ import { OfferId } from '../../../offers/domain/value-objects/offer-id.value';
 import { AuditTrail } from '../../../common/domain/value-objects/audit-trail.value';
 import { CustomizationType } from '../enums/customization-type.enum';
 import { CustomizationStatus } from '../enums/customization.status.enum';
-import { CostSaved } from '../events/money-deposited.event';
-import { MoneyWithdrawn } from '../events/money-withdrawn.event';
-import { MoneyTransferred } from '../events/money-transferred.event';
+import { CostSaved } from '../events/cost-saved.event';
+/*import { MoneyWithdrawn } from '../events/money-withdrawn.event';
+import { MoneyTransferred } from '../events/money-transferred.event';*/
 
 export class Customization extends AggregateRoot {
   private id: CustomizationId;
