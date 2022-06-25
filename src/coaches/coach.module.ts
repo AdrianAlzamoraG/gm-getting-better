@@ -15,7 +15,7 @@ import { PersonTypeORM } from './infrastructure/persistence/typeorm/entities/per
 import { CoachTypeORM } from './infrastructure/persistence/typeorm/entities/coach.typeorm';
 import { OrganizationRegisteredHandler } from './application/handlers/events/organization-registered.handler';
 import { GetCustomersOrganizationHandler } from './application/handlers/queries/get-customers-organization.handler';
-import { MoneyTransferredHandler } from './application/handlers/events/money-transferred.handler';
+import { CostSavedHandler } from './application/handlers/events/cost-saved.handler';
 
 export const CommandHandlers = [
   RegisterPersonHandler,
@@ -24,7 +24,7 @@ export const CommandHandlers = [
 export const EventHandlers = [
   PersonRegisteredHandler,
   OrganizationRegisteredHandler,
-  MoneyTransferredHandler,
+  CostSavedHandler,
 ];
 export const QueryHandlers = [
   GetCustomersPersonHandler,

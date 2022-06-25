@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AppNotification } from 'src/common/application/app.notification';
 import { Repository } from 'typeorm';
 import { CostRequestDto } from '../dtos/request/cost-request.dto';
-import { OfferTypeORM } from '../../../offers/infrastructure/persistence/typeorm/entities/offer.typeorm';
+import { OfferTypeORM } from '../../../offers/infrastructure/persistence/typeorm/entities/offerTypeORM';
 
 @Injectable()
 export class SaveCostValidator {

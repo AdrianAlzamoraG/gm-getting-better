@@ -8,7 +8,7 @@ export class OrganizationNameTypeORM {
     this.value = value;
   }
 
-  public static from(name: string): organizationNameTypeORM {
+  public static from(name: string): OrganizationNameTypeORM {
     return new OrganizationNameTypeORM(name);
   }
 }

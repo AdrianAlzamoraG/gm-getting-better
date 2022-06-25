@@ -35,47 +35,49 @@ CREATE TABLE IF NOT EXISTS users (
   CONSTRAINT FK_users_district_id FOREIGN KEY(district_id) REFERENCES districts(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE IF NOT EXISTS clients(
+CREATE TABLE IF NOT EXISTS coaches(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  type ENUM ('C', 'P') NOT NULL DEFAULT 'C',
+  type ENUM ('O', 'P') NOT NULL DEFAULT 'O',
   created_at DATETIME NULL,
   created_by BIGINT UNSIGNED NULL,
   updated_at DATETIME NULL,
   updated_by BIGINT UNSIGNED NULL,
-  company_name VARCHAR(150) NULL,
+  organization_name VARCHAR(150) NULL,
   ruc VARCHAR(11) NULL,
   first_name VARCHAR(75) NULL,
   last_name VARCHAR(75) NULL,
   dni VARCHAR(8) NULL,
   PRIMARY KEY(id),
-  UNIQUE INDEX UQ_clients_ruc(ruc),
-  UNIQUE INDEX UQ_clients_company_name(company_name), 
-  UNIQUE INDEX UQ_clients_dni(dni),
-  KEY IX_clients_created_by(created_by),
-  KEY IX_clients_updated_by(updated_by),
-  CONSTRAINT FK_clients_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_clients_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
+  UNIQUE INDEX UQ_coaches_ruc(ruc),
+  UNIQUE INDEX UQ_coaches_organization(organization_name),
+  UNIQUE INDEX UQ_coaches_dni(dni),
+  KEY IX_coaches_created_by(created_by),
+  KEY IX_coaches_updated_by(updated_by),
+  CONSTRAINT FK_coaches_created_by FOREIGN KEY(created_by) REFERENCES users(id),
+  CONSTRAINT FK_coaches_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE IF NOT EXISTS offers(
   id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  title VARCHAR(150) NOT NULL,
-  session_price DECIMAL(10,2) NULL,
-  currency VARCHAR(3) NULL,
-  client_id BIGINT UNSIGNED NOT NULL,
+  type ENUM ('O', 'P') NOT NULL DEFAULT 'O',
   created_at DATETIME NULL,
   created_by BIGINT UNSIGNED NULL,
   updated_at DATETIME NULL,
   updated_by BIGINT UNSIGNED NULL,
-  PRIMARY KEY (id),
-  UNIQUE KEY UQ_offers_title(title),
-  KEY IX_offers_client_id(client_id),
-  KEY IX_offers_created_by(created_by),
-  KEY IX_offers_updated_by(updated_by),
-  CONSTRAINT FK_accounts_client_id FOREIGN KEY(client_id) REFERENCES clients(id),
-  CONSTRAINT FK_accounts_created_by FOREIGN KEY(created_by) REFERENCES users(id),
-  CONSTRAINT FK_accounts_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
+  organization_name VARCHAR(150) NULL,
+  ruc VARCHAR(11) NULL,
+  first_name VARCHAR(75) NULL,
+  last_name VARCHAR(75) NULL,
+  dni VARCHAR(8) NULL,
+  PRIMARY KEY(id),
+  UNIQUE INDEX UQ_coaches_ruc(ruc),
+  UNIQUE INDEX UQ_coaches_organization_name(organization_name), 
+  UNIQUE INDEX UQ_coaches_dni(dni),
+  KEY IX_coaches_created_by(created_by),
+  KEY IX_coaches_updated_by(updated_by),
+  CONSTRAINT FK_coaches_created_by FOREIGN KEY(created_by) REFERENCES users(id),
+  CONSTRAINT FK_coaches_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -92,12 +94,12 @@ CREATE TABLE IF NOT EXISTS customizations(
   updated_at DATETIME NULL,
   updated_by BIGINT UNSIGNED NULL,
   PRIMARY KEY (id),
-  KEY IX_customizations_from_account_id(from_offer_id),
-  KEY IX_customizations_to_account_id(to_offer_id),
+  KEY IX_customizations_from_offers_id(from_offer_id),
+  KEY IX_customizations_to_offers_id(to_offer_id),
   KEY IX_customizations_created_by(created_by),
   KEY IX_customizations_updated_by(updated_by),
-  CONSTRAINT FK_customizations_from_account_id FOREIGN KEY(from_account_id) REFERENCES offers(id),
-  CONSTRAINT FK_customizations_to_account_id FOREIGN KEY(to_account_id) REFERENCES offers(id),
+  CONSTRAINT FK_customizations_from_offer_id FOREIGN KEY(from_offer_id) REFERENCES offers(id),
+  CONSTRAINT FK_customizations_to_offer_id FOREIGN KEY(to_offer_id) REFERENCES offers(id),
   CONSTRAINT FK_customizations_created_by FOREIGN KEY(created_by) REFERENCES users(id),
   CONSTRAINT FK_customizations_updated_by FOREIGN KEY(updated_by) REFERENCES users(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

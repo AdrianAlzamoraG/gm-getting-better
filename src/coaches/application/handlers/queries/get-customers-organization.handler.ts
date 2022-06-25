@@ -31,7 +31,7 @@ export class GetCustomersOrganizationHandler
     ) {
       const customerDto = new GetCustomersOrganizationDto();
       customerDto.id = Number(ormCustomer.id);
-      customerDto.organizationName = ormCustomer.organizationName;
+      customerDto.coachName = ormCustomer.organizationName;
       customerDto.ruc = ormCustomer.ruc;
       return customerDto;
     });
