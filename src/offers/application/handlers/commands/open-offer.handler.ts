@@ -11,7 +11,7 @@ import { Currency } from '../../../../common/domain/enums/currency.enum';
 import { OfferFactory } from '../../../domain/factories/offer.factory';
 import { Offer } from '../../../domain/entities/offer.entity';
 import { OfferMapper } from '../../mappers/offerMapper';
-import { CoachId } from '../../../../coach/domain/value-objects/coach-id.value';
+import { CoachId } from '../../../../coaches/domain/value-objects/coach-id.value';
 import { OfferId } from '../../../domain/value-objects/offer-id.value';
 
 @CommandHandler(OpenOffer)

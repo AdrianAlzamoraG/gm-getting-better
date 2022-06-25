@@ -12,7 +12,7 @@ import { OfferTitle } from '../../../domain/value-objects/offer-title.value';
 import { OfferFactory } from '../../../domain/factories/offer.factory';
 import { Money } from '../../../../common/domain/value-objects/money.value';
 import { Currency } from '../../../../common/domain/enums/currency.enum';
-import { CoachId } from '../../../../coach/domain/value-objects/coach-id.value';
+import { CoachId } from '../../../../coaches/domain/value-objects/coach-id.value';
 import { OfferId } from '../../../domain/value-objects/offer-id.value';
 import { CompleteCustomization } from '../../../../customizations/application/commands/complete-customization.command';
 

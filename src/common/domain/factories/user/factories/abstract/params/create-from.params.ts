@@ -1,7 +1,7 @@
 import { Name } from '../../../value-objects/name.value';
 import { Email } from '../../../../value-objects/email.value';
 import { Password } from '../../../../value-objects/password.value';
-import { NameCoach } from '../../../../../../coach/domain/value-objects/namecoach.value';
+import { NameCoach } from '../../../../../../coaches/domain/value-objects/namecoach.value';
 
 export interface CreateFromParams {
   //Common

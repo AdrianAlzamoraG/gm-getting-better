@@ -1,4 +1,4 @@
-import { CoachId } from '../../../coach/domain/value-objects/coach-id.value';
+import { CoachId } from '../../../coaches/domain/value-objects/coach-id.value';
 import { Money } from '../../../common/domain/value-objects/money.value';
 import { AppNotification } from '../../../common/application/app.notification';
 import { Result } from 'typescript-result';
