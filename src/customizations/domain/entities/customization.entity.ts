@@ -13,24 +13,24 @@ export class Customization extends AggregateRoot {
   private id: CustomizationId;
   private readonly type: CustomizationType;
   private readonly status: CustomizationStatus;
-  private readonly accountFrom: OfferId;
-  private readonly accountTo: OfferId;
+  private readonly offerFrom: OfferId;
+  private readonly offerTo: OfferId;
   private readonly amount: Money;
   private readonly auditTrail: AuditTrail;
 
   public constructor(
     type: CustomizationType,
     status: CustomizationStatus,
-    accountFrom: OfferId,
-    accountTo: OfferId,
+    offerFrom: OfferId,
+    offerTo: OfferId,
     amount: Money,
     auditTrail: AuditTrail,
   ) {
     super();
     this.type = type;
     this.status = status;
-    this.accountFrom = accountFrom;
-    this.accountTo = accountTo;
+    this.offerFrom = offerFrom;
+    this.offerTo = offerTo;
     this.amount = amount;
     this.auditTrail = auditTrail;
   }
@@ -38,7 +38,7 @@ export class Customization extends AggregateRoot {
   public cost() {
     const event = new CostSaved(
       this.id.getValue(),
-      this.accountFrom.getValue(),
+      this.offerFrom.getValue(),
       this.amount.getAmount(),
       this.status,
       null,
@@ -68,12 +68,12 @@ export class Customization extends AggregateRoot {
     return this.status;
   }
 
-  public getAccountFrom(): OfferId {
-    return this.accountFrom;
+  public getOfferFrom(): OfferId {
+    return this.offerFrom;
   }
 
-  public getAccountTo(): OfferId {
-    return this.accountTo;
+  public getOfferTo(): OfferId {
+    return this.offerTo;
   }
 
   public getAmount(): Money {

@@ -9,16 +9,16 @@ export class CustomizationFactory {
   public static createFrom(
     type: CustomizationType,
     status: CustomizationStatus,
-    accountIdFrom: OfferId,
-    accountIdTo: OfferId,
+    offerIdFrom: OfferId,
+    offerIdTo: OfferId,
     amount: Money,
     auditTrail: AuditTrail,
   ): Customization {
     return new Customization(
       type,
       status,
-      accountIdFrom,
-      accountIdTo,
+      offerIdFrom,
+      offerIdTo,
       amount,
       auditTrail,
     );

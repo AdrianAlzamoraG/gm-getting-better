@@ -1,8 +1,8 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SaveCost } from '../../commands/deposit-money.command';
-import { OfferTypeORM } from '../../../../offers/infrastructure/persistence/typeorm/entities/offer.typeorm';
+import { SaveCost } from '../../commands/save-cost.command';
+import { OfferTypeORM } from '../../../../offers/infrastructure/persistence/typeorm/entities/offerTypeORM';
 import { Money } from '../../../../common/domain/value-objects/money.value';
 import { Currency } from '../../../../common/domain/enums/currency.enum';
 import { CustomizationTypeorm } from '../../../infrastructure/persistence/typeorm/entities/customization.typeorm';
@@ -26,23 +26,23 @@ export class SaveCostHandler implements ICommandHandler<SaveCost> {
 
   async execute(command: SaveCost) {
     let customizationId = 0;
-    const accountNumber: string = command.title.trim();
-    const accountTypeORM: OfferTypeORM = await this.offerRepository
+    const offerTitle: string = command.title.trim();
+    const offerTypeORM: OfferTypeORM = await this.offerRepository
       .createQueryBuilder()
       .setLock('pessimistic_write')
       .useTransaction(true)
-      .where('number = :number')
-      .setParameter('number', accountNumber)
+      .where('title = :title')
+      .setParameter('title', offerTitle)
       .getOne();
-    if (accountTypeORM == null) {
+    if (offerTypeORM == null) {
       return customizationId;
     }
-    const accountFromId: OfferId = OfferId.of(accountTypeORM.id);
+    const offerFromId: OfferId = OfferId.of(offerTypeORM.id);
     const amount: Money = Money.create(command.amount, Currency.SOLES);
     let customization: Customization = CustomizationFactory.createFrom(
       CustomizationType.COST,
       CustomizationStatus.SAVED,
-      accountFromId,
+      offerFromId,
       null,
       amount,
       null,

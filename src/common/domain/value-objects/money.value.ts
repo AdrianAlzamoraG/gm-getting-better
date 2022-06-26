@@ -18,6 +18,10 @@ export class Money {
     return this.newMoney(this.amount + other.getAmount());
   }
 
+  public setAmount(other: Money): Money {
+    return this.newMoney(other.getAmount());
+  }
+
   public subtract(other: Money): Money {
     return this.newMoney(this.amount - other.getAmount());
   }

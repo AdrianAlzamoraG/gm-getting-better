@@ -18,10 +18,10 @@ export class CustomizationTypeorm {
   public type: string;
 
   @Column((type) => OfferIdFromTypeorm, { prefix: false })
-  public accountIdFrom: OfferIdFromTypeorm;
+  public offerIdFrom: OfferIdFromTypeorm;
 
   @Column((type) => OfferIdToTypeorm, { prefix: false })
-  public accountIdTo: OfferIdToTypeorm;
+  public offerIdTo: OfferIdToTypeorm;
 
   @Column((type) => AmountTypeORM, { prefix: false })
   public amount: AmountTypeORM;
