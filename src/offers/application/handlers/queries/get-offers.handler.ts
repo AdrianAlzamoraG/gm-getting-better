@@ -14,7 +14,7 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
       a.id,
       a.title,
       a.balance,
-      a.client_id,
+      a.coach_id,
       a.created_at,
       a.created_by,
       a.updated_at,
@@ -32,7 +32,7 @@ export class GetOffersHandler implements IQueryHandler<GetOffersQuery> {
       offerDto.id = Number(ormOffer.id);
       offerDto.title = ormOffer.title;
       offerDto.balance = Number(ormOffer.balance);
-      offerDto.coachId = Number(ormOffer.client_id);
+      offerDto.coachId = Number(ormOffer.coachId);
       offerDto.createdAt = ormOffer.created_at;
       offerDto.createdBy = ormOffer.created_by;
       offerDto.updatedAt = ormOffer.updated_at;

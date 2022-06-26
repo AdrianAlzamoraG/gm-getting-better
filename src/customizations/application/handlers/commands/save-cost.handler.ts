@@ -1,7 +1,7 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SaveCost } from '../../commands/deposit-money.command';
+import { SaveCost } from '../../commands/save-cost.command';
 import { OfferTypeORM } from '../../../../offers/infrastructure/persistence/typeorm/entities/offerTypeORM';
 import { Money } from '../../../../common/domain/value-objects/money.value';
 import { Currency } from '../../../../common/domain/enums/currency.enum';
@@ -26,13 +26,13 @@ export class SaveCostHandler implements ICommandHandler<SaveCost> {
 
   async execute(command: SaveCost) {
     let customizationId = 0;
-    const offerNumber: string = command.title.trim();
+    const offerTitle: string = command.title.trim();
     const offerTypeORM: OfferTypeORM = await this.offerRepository
       .createQueryBuilder()
       .setLock('pessimistic_write')
       .useTransaction(true)
-      .where('number = :number')
-      .setParameter('number', offerNumber)
+      .where('title = :title')
+      .setParameter('title', offerTitle)
       .getOne();
     if (offerTypeORM == null) {
       return customizationId;

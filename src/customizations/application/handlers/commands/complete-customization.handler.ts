@@ -22,16 +22,14 @@ export class CompleteCustomizationHandler
         .where('id = :id')
         .setParameter('id', customizationId)
         .getOne();
-    if (customizationTypeORM == null) {
-      return false;
-    }
+    if (customizationTypeORM == null) return false;
+
     customizationTypeORM.status = CustomizationStatus.SAVED;
     customizationTypeORM = await this.customizationRepository.save(
       customizationTypeORM,
     );
-    if (customizationTypeORM == null) {
-      return false;
-    }
+    if (customizationTypeORM == null) return false;
+
     return true;
   }
 }

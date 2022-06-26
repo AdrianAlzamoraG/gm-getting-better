@@ -42,7 +42,7 @@ export class Offer extends AggregateRoot {
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
-    this.balance = this.balance.add(amount);
+    this.balance = this.balance.setAmount(amount);
     return Result.ok(this);
   }
 

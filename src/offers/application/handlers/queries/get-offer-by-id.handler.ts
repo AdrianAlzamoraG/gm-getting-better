@@ -20,9 +20,9 @@ export class GetOfferByIdHandler implements IQueryHandler<GetOfferByIdQuery> {
       a.updated_at,
       a.updated_by
     FROM 
-      offers o
+      offers a
     WHERE
-      o.id = ?;`;
+      a.id = ?;`;
     const ormOffers = await manager.query(sql, [query.offerId]);
     if (ormOffers.length <= 0) {
       return {};
@@ -32,7 +32,7 @@ export class GetOfferByIdHandler implements IQueryHandler<GetOfferByIdQuery> {
     offerDto.id = Number(ormOffer.id);
     offerDto.title = ormOffer.title;
     offerDto.balance = Number(ormOffer.balance);
-    offerDto.coachId = Number(ormOffer.client_id);
+    offerDto.coachId = Number(ormOffer.coachId);
     offerDto.createdAt = ormOffer.created_at;
     offerDto.createdBy = ormOffer.created_by;
     offerDto.updatedAt = ormOffer.updated_at;

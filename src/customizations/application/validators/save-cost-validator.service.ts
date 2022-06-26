@@ -15,7 +15,7 @@ export class SaveCostValidator {
   public async validate(
     costRequestDto: CostRequestDto,
   ): Promise<AppNotification> {
-    const notification: AppNotification = new AppNotification();
+    let notification: AppNotification = new AppNotification();
     const title: string = costRequestDto.title.trim();
     if (title.length <= 0) {
       notification.addError('Offer title is required', null);
@@ -35,6 +35,7 @@ export class SaveCostValidator {
     if (amount <= 0) {
       notification.addError('Amount must be greater than zero', null);
     }
+
     return notification;
   }
 }
