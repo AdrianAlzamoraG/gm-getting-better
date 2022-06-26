@@ -5,12 +5,6 @@ import { SaveCostHandler } from './application/handlers/commands/save-cost.handl
 import { CustomizationsApplicationService } from './application/services/customizations-application.service';
 import { CustomizationsController } from './api/customizations.controller';
 import { SaveCostValidator } from './application/validators/save-cost-validator.service';
-/*
-import { WithdrawMoneyValidator } from './application/validators/withdraw-money.validator';
-import { TransferMoneyValidator } from './application/validators/transfer-money.validator';
-*/
-// import { WithdrawMoneyHandler } from './application/handlers/commands/withdraw-money.handler';
-// import { TransferMoneyHandler } from './application/handlers/commands/transfer-money.handler';
 import { CustomizationTypeorm } from './infrastructure/persistence/typeorm/entities/customization.typeorm';
 import { OfferTypeORM } from '../offers/infrastructure/persistence/typeorm/entities/offerTypeORM';
 import { CostSavedHandler } from './application/handlers/events/cost-saved.handler';
@@ -18,8 +12,6 @@ import { CompleteCustomizationHandler } from './application/handlers/commands/co
 
 export const CommandHandlers = [
   SaveCostHandler,
-  /*WithdrawMoneyHandler,
-  TransferMoneyHandler,*/
   CompleteCustomizationHandler,
 ];
 export const EventHandlers = [CostSavedHandler];

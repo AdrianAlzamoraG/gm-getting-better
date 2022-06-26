@@ -6,7 +6,10 @@ import { QueryBus } from '@nestjs/cqrs';
 import { CustomizationsApplicationService } from '../application/services/customizations-application.service';
 import { CostRequestDto } from '../application/dtos/request/cost-request.dto';
 import { CostResponseDto } from '../application/dtos/response/cost-response.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Customizations')
 @Controller('customizations')
 export class CustomizationsController {
   constructor(
@@ -15,6 +18,11 @@ export class CustomizationsController {
   ) {}
 
   @Post('/cost')
+  @ApiOperation({ summary: 'Save Cost customization' })
+  @ApiResponse({
+    status: 201,
+    description: 'Cost customization saved',
+  })
   async cost(
     @Body() costRequestDto: CostRequestDto,
     @Res({ passthrough: true }) response,
