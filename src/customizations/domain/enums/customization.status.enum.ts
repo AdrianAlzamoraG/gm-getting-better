@@ -3,7 +3,7 @@ import { CustomizationType } from './customization-type.enum';
 export enum CustomizationStatus {
   SAVED = 1,
   COMPLETED = 2,
-  FAILED = 3
+  FAILED = 3,
 }
 
 export const CustomizationStatusLabel = new Map<number, string>([

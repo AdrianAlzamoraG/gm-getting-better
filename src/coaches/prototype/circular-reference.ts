@@ -1,9 +1,9 @@
-import {Prototype} from "./prototype";
+import { Prototype } from './prototype';
 
 export class CircularReference {
-    public prototype: Prototype;
+  public prototype: Prototype;
 
-    constructor(prototype: Prototype) {
-        this.prototype = prototype;
-    }
+  constructor(prototype: Prototype) {
+    this.prototype = prototype;
+  }
 }

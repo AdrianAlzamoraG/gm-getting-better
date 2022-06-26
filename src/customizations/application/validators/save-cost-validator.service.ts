@@ -15,7 +15,7 @@ export class SaveCostValidator {
   public async validate(
     costRequestDto: CostRequestDto,
   ): Promise<AppNotification> {
-    let notification: AppNotification = new AppNotification();
+    const notification: AppNotification = new AppNotification();
     const title: string = costRequestDto.title.trim();
     if (title.length <= 0) {
       notification.addError('Offer title is required', null);

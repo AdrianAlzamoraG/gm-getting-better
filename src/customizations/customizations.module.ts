@@ -10,10 +10,7 @@ import { OfferTypeORM } from '../offers/infrastructure/persistence/typeorm/entit
 import { CostSavedHandler } from './application/handlers/events/cost-saved.handler';
 import { CompleteCustomizationHandler } from './application/handlers/commands/complete-customization.handler';
 
-export const CommandHandlers = [
-  SaveCostHandler,
-  CompleteCustomizationHandler,
-];
+export const CommandHandlers = [SaveCostHandler, CompleteCustomizationHandler];
 export const EventHandlers = [CostSavedHandler];
 export const QueryHandlers = [];
 

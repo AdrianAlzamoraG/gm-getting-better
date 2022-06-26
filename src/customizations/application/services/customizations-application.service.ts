@@ -46,5 +46,4 @@ export class CustomizationsApplicationService {
     );
     return Result.ok(depositResponseDto);
   }
-
 }

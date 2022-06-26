@@ -46,7 +46,6 @@ export class CoachesController {
     }
   }
 
-
   @Post('/organization')
   @ApiOperation({ summary: 'Crete a new Organization' })
   @ApiResponse({

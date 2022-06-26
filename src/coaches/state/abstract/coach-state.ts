@@ -1,11 +1,11 @@
-import { Coach } from "../context/coach";
+import { Coach } from '../context/coach';
 
 export abstract class CoachState {
-    protected coach: Coach;
+  protected coach: Coach;
 
-    public setContext(coach: Coach) {
-        this.coach = coach;
-    }
+  public setContext(coach: Coach) {
+    this.coach = coach;
+  }
 
-    public abstract handle(): void;
+  public abstract handle(): void;
 }
