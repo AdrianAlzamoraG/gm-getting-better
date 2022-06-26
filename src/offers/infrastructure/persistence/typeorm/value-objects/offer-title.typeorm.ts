@@ -1,7 +1,7 @@
 import { Column, Unique } from 'typeorm';
 
 export class OfferTitleTypeorm {
-  @Column('varchar', { name: 'title', length: 150, nullable: false })
+  @Column('varchar', { name: 'title', length: 225, nullable: false })
   value: string;
 
   private constructor(value: string) {

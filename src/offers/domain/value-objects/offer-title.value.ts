@@ -3,7 +3,7 @@ import { AppNotification } from '../../../common/application/app.notification';
 
 export class OfferTitle {
   private readonly value: string;
-  private static MAX_LENGTH = 15;
+  private static MAX_LENGTH = 225;
 
   private constructor(value: string) {
     this.value = value;
