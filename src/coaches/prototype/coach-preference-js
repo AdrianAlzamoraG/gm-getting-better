@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+exports.CoachPreference = void 0;
+var CoachPreference = /** @class */ (function () {
+    function CoachPreference(coach) {
+        this.coach = coach;
+    }
+    return CoachPreference;
+}());
+exports.CoachPreference = CoachPreference;

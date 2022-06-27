@@ -3,33 +3,37 @@ import { Result } from 'typescript-result';
 
 export class Email {
   private value: string;
-  private static MAX_LENGTH = 150;
 
   private constructor(value: string) {
     this.value = value;
   }
 
-  public static create(value: string): Result<AppNotification, Email> {
+  public getValue(): string {
+    return this.value;
+  }
+
+  public static create(email: string): Result<AppNotification, Email> {
     const notification: AppNotification = new AppNotification();
-    value = (value ?? '').trim();
-    if (value === '') {
-      notification.addError('email is required', null);
+    email = (email ?? '').trim();
+    const emailMaxLength = 150;
+    if (email === '') {
+      notification.addError('address is required', null);
     }
-    if (value.length > this.MAX_LENGTH) {
+    if (email.length > emailMaxLength) {
       notification.addError(
         'The maximum length of an email is ' +
-          this.MAX_LENGTH +
+          emailMaxLength +
           ' characters including spaces',
         null,
       );
     }
     const regExp = new RegExp('^(.+)@(.+)$');
-    if (regExp.test(value) === false) {
+    if (regExp.test(email) === false) {
       notification.addError('email format is invalid', null);
     }
     if (notification.hasErrors()) {
       return Result.error(notification);
     }
-    return Result.ok(new Email(value));
+    return Result.ok(new Email(email));
   }
 }

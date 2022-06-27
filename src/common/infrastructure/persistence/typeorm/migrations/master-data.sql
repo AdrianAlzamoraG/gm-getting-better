@@ -2102,4 +2102,5 @@ INSERT INTO districts(id, name, province_id) VALUES
 ('250401', 'Purus', '2504');
 
 INSERT INTO users(email, district_id) VALUES
-('pcsiebau@upc.edu.pe', '150108');
+('pcsiebau@upc.edu.pe', '150108'),
+('u3221233@upc.edu.pe', '250401');
