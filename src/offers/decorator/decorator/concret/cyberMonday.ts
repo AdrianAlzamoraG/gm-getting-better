@@ -4,7 +4,7 @@ import { Offer } from '../../component/abstract/offer';
 export class CyberMonday extends OfferDecorator {
   constructor(offer: Offer) {
     super(offer);
-    this.description = 'CyberMonday ($15.00)';
+    this.description = 'CyberMonday (-$15.00)';
   }
 
   public getDescription(): string {

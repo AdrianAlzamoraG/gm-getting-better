@@ -21,7 +21,7 @@ var CyberMonday = /** @class */ (function (_super) {
     __extends(CyberMonday, _super);
     function CyberMonday(offer) {
         var _this = _super.call(this, offer) || this;
-        _this.description = 'CyberMonday ($15.00)';
+        _this.description = 'CyberMonday (-$15.00)';
         return _this;
     }
     CyberMonday.prototype.getDescription = function () {

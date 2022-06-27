@@ -9,8 +9,11 @@ function clientCode() {
   let offer: Offer = OfferFactory.getType(OfferType.DUE);
   offer = new CyberMonday(offer);
   //offer = new GivingTuesday(offer);
-  console.log(offer.getDescription());
-  console.log(offer.calculateCost());
+  console.log('shopping cart: \n', offer.getDescription());
+  console.log(
+    'Precio final luego de aplicar descuentos',
+    offer.calculateCost(),
+  );
 }
 
 clientCode();

@@ -21,7 +21,7 @@ var GivingTuesday = /** @class */ (function (_super) {
     __extends(GivingTuesday, _super);
     function GivingTuesday(offer) {
         var _this = _super.call(this, offer) || this;
-        _this.description = 'GivingTuesday ($10.50)';
+        _this.description = 'GivingTuesday (-$10.50)';
         return _this;
     }
     GivingTuesday.prototype.getDescription = function () {

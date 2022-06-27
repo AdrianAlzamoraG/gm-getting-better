@@ -21,7 +21,7 @@ var BlackFriday = /** @class */ (function (_super) {
     __extends(BlackFriday, _super);
     function BlackFriday(offer) {
         var _this = _super.call(this, offer) || this;
-        _this.description = 'BlackFriday ($20.25)';
+        _this.description = 'BlackFriday (-$20.25)';
         return _this;
     }
     BlackFriday.prototype.getDescription = function () {
